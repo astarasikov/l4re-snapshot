@@ -36,13 +36,14 @@ CPPFLAGS := -DNOT_IN_libc -DIS_IN_rtld \
             -DIS_IN_rtld -D__LIBDL_SHARED__ -DSHARED
 
 DEFINES_x86-l4f += -DUSE_TLS=1 -DUSE___THREAD=1
+DEFINES_arm-l4f += -DUSE_TLS=1 -DUSE___THREAD=1
 
 
 
 LDFLAGS  =  -Bsymbolic -Bstatic --warn-common --sort-common \
             --no-undefined -e _start -z defs -z now \
             --discard-locals --discard-all   \
-            --gc-sections -ll4sys-direct $(GCCLIB)
+            --gc-sections -ll4sys-direct -luc_c -ll4sys-l4x $(GCCLIB)
 
 CRT0 :=
 CRTN :=
