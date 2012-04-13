@@ -7,4 +7,6 @@ TARGET		= libarm_input.o.a
 PC_FILENAME    := libdrivers-input
 REQUIRES_LIBS   = l4re_c-util libio
 
+PRIVATE_INCDIR	+= $(PKGDIR)/../input/include
+
 include $(L4DIR)/mk/lib.mk

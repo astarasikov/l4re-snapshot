@@ -9,7 +9,8 @@
 #include <pthread.h>
 #include <pthread-l4.h>
 
-#include <l4/input/drv_reg.h>
+#include <drv_reg.h>
+
 #include <l4/io/io.h>
 #include <l4/re/c/namespace.h>
 #include <l4/re/c/util/cap_alloc.h>

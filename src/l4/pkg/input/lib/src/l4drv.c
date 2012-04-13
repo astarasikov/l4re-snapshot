@@ -47,7 +47,8 @@ static void input_handler(Input_event event, void *private)
   struct input_dev *dev = &((struct l4drv_data *)private)->dev;
 
   input_event(dev, event.type, event.code, event.value);
-  input_sync(dev);
+  if (event.type != EV_ABS)
+    input_sync(dev);
 }
 
 /* XXX this is just a dummy */
@@ -81,6 +82,7 @@ static void l4drv_set_device_attrs(struct l4drv_data *data)
   // FIXME: this information should come from the driver!
   data->dev.evbit[0] = BIT(EV_KEY)|BIT(EV_ABS);
   set_bit(BTN_LEFT, data->dev.keybit);
+  set_bit(BTN_TOUCH, data->dev.keybit);
   set_bit(KEY_1, data->dev.keybit);
   set_bit(KEY_2, data->dev.keybit);
   set_bit(KEY_3, data->dev.keybit);
@@ -98,6 +100,10 @@ static void l4drv_set_device_attrs(struct l4drv_data *data)
   set_bit(KEY_E, data->dev.keybit);
   set_bit(KEY_F, data->dev.keybit);
   set_bit(KEY_ENTER, data->dev.keybit);
+
+  set_bit(ABS_X, data->dev.absbit);
+  set_bit(ABS_Y, data->dev.absbit);
+  set_bit(ABS_PRESSURE, data->dev.absbit);
 }
 
 static inline void l4drv_enable(struct l4drv_data *data)
