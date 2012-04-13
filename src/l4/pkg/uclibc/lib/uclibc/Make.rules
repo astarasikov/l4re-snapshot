@@ -1,11 +1,12 @@
 # vi:ft=make
 LIBCSRC_DIR ?= $(SRC_DIR)
 
-DEFINES		+= -DL4_THREAD_SAFE -DL4_NO_RTTI=1
-DEFINES_x86-l4f += -DUSE_TLS=1
-TARGET          := libuc_c.a libuc_c.so libuc_c_nonshared.p.a
-PC_FILENAME     := libc
-PC_LIBS         := -luc_c
+DEFINES           += -DL4_THREAD_SAFE -DL4_NO_RTTI=1
+DEFINES_x86-l4f   += -DUSE_TLS=1
+DEFINES_arm-l4f   += -DUSE_TLS=1
+TARGET            := libuc_c.a libuc_c.so libuc_c_nonshared.p.a
+PC_FILENAME       := libc
+PC_LIBS           := -luc_c
 
 include $(LIBCSRC_DIR)/make_vars.mk
 include $(LIBCSRC_DIR)/make_rules.mk
@@ -39,15 +40,24 @@ SRC_S_libuc_c.a           += $(UCLIBC_SRC_S) $(UCLIBC_SRC_S_libuc_c.a)
 SRC_CC_libuc_c.so         += $(UCLIBC_SRC_CC) $(UCLIBC_SRC_CC_libuc_c.so)
 SRC_CC_libuc_c.a          += $(UCLIBC_SRC_CC) $(UCLIBC_SRC_CC_libuc_c.a)
 
-SRC_C_libuc_c.so          += $(PTHOBJ_PFX)/forward.c $(PTHOBJ_PFX)/libc_pthread_init.c
-SRC_CC_libuc_c.a_x86-l4f  += $(PTHOBJ_PFX)/sysdeps/generic/libc-tls.cc
-SRC_C_libuc_c.a_x86-l4f   += $(PTHOBJ_PFX)/sysdeps/generic/dl-tls.c
+SRC_C_libuc_c.so           += $(PTHOBJ_PFX)/forward.c $(PTHOBJ_PFX)/libc_pthread_init.c
+SRC_CC_libuc_c.a_x86-l4f   += $(PTHOBJ_PFX)/sysdeps/generic/libc-tls.cc
+SRC_C_libuc_c.a_x86-l4f    += $(PTHOBJ_PFX)/sysdeps/generic/dl-tls.c
+SRC_CC_libuc_c.a_arm-l4f   += $(PTHOBJ_PFX)/sysdeps/generic/libc-tls.cc
+SRC_C_libuc_c.a_arm-l4f    += $(PTHOBJ_PFX)/sysdeps/generic/dl-tls.c
 
 SRC_C_libuc_c_nonshared.p.a += libc/stdlib/atexit.c
 SRC_C_libuc_c.a             += libc/stdlib/atexit.c
 
 SRC_C_libuc_c.so_x86-l4f    += libc/misc/pthread/tsd.c
 SRC_C_libuc_c.a_x86-l4f     += libc/misc/pthread/tsd.c
+SRC_C_libuc_c.so_arm-l4f    += libc/misc/pthread/tsd.c
+SRC_C_libuc_c.a_arm-l4f     += libc/misc/pthread/tsd.c
+
+SRC_C_libuc_c.so_arm-l4f    += ARCH-arm/aeabi_read_tp_generic.c
+SRC_C_libuc_c.a_arm-l4f     += ARCH-arm/aeabi_read_tp_generic.c
+#SRC_S_libuc_c.so_arm-l4f    += ARCH-arm/aeabi_read_tp-v6p.S
+#SRC_S_libuc_c.a_arm-l4f     += ARCH-arm/aeabi_read_tp-v6p.S
 
 CXXFLAGS_$(PTHOBJ_PFX)/sysdeps/generic/libc-tls.cc += -fno-rtti -fno-exceptions
 

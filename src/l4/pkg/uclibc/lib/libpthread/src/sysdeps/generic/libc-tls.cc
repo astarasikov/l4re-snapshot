@@ -176,7 +176,8 @@ __libc_setup_tls (size_t tcbsize, size_t tcbalign)
   tcb_offset = roundup (tcbsize, align ?: 1);
   tlsblock = __libc_alloc_initial_tls(tcb_offset + memsz + max_align
 		     + TLS_PRE_TCB_SIZE + GL(dl_tls_static_size));
-  tlsblock += TLS_PRE_TCB_SIZE;
+  //tlsblock += TLS_PRE_TCB_SIZE;
+  tlsblock = (char *)tlsblock + TLS_PRE_TCB_SIZE;
 # else
   /* In case a model with a different layout for the TCB and DTV
      is defined add another #elif here and in the following #ifs.  */

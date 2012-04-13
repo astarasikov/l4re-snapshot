@@ -16,6 +16,7 @@
 #else
 	.align	2
 	.arm
+	.L1:
 	ldmdb	fp, {r4, r5, r6, r7, r8, r9, sl, fp, sp, pc}
 #endif
 	.size	.L1, .-.L1
@@ -32,6 +33,7 @@
 #else
 	.align	2
 	.arm
+	.L2:
 	ldmdb	fp, {r4, r5, r6, r7, r8, r9, sl, fp, sp, pc}
 #endif
 	.size	.L2,.-.L2
