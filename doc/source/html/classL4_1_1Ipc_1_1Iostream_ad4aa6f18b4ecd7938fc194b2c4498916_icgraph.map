@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classL4Re_1_1Dataspace.html#a1dc3753a5a0cb425f74466bb79a52150" title="Allocate a range in the dataspace." alt="" coords="212,5,399,35"/>
+<area shape="rect" id="node5" href="$classL4Re_1_1Dataspace.html#a4989267bdb3c9086ce5cd45258c102c4" title="Get information on the data space." alt="" coords="225,59,385,88"/>
+<area shape="rect" id="node11" href="$classL4Re_1_1Dataspace.html#a4fa37ebc3ddac165e1491dcbda121d70" title="Get the physical addresses of a data space." alt="" coords="221,112,389,141"/>
+<area shape="rect" id="node7" href="$classL4Re_1_1Dataspace.html#a3e81d864adcc2c7a5ce251d6f47d76fa" title="Get flags of the data space." alt="" coords="448,32,616,61"/>
+<area shape="rect" id="node9" href="$classL4Re_1_1Dataspace.html#a4b5a994a93cb92028309bd901054f138" title="Get size of a data space." alt="" coords="451,85,613,115"/>
+</map>

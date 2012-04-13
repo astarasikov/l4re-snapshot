@@ -1,0 +1,5 @@
+<map id="structs" name="structs">
+<area shape="rect" id="node1" href="$group__l4__thread__control__api.html" title="API for Thread Control method." alt="" coords="283,5,397,35"/>
+<area shape="rect" id="node3" href="$group__l4__vcpu__api.html" title="vCPU API" alt="" coords="300,59,380,88"/>
+<area shape="rect" id="node4" href="$group__l4__kernel__object__api.html" title="API of kernel objects." alt="" coords="5,32,120,61"/>
+</map>

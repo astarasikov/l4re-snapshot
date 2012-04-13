@@ -1,0 +1,6 @@
+<map id="structs" name="structs">
+<area shape="rect" id="node1" href="$group__l4__vm__tz__api.html" title="Virtual Machine API for ARM TrustZone." alt="" coords="400,5,507,35"/>
+<area shape="rect" id="node2" href="$group__l4__vm__vmx__api.html" title="Virtual machine API for VMX." alt="" coords="393,72,513,101"/>
+<area shape="rect" id="node4" href="$group__l4__vm__svm__api.html" title="Virtual machine API for SVM." alt="" coords="393,125,513,155"/>
+<area shape="rect" id="node5" href="$group__l4__kernel__object__api.html" title="API of kernel objects." alt="" coords="5,51,120,80"/>
+</map>

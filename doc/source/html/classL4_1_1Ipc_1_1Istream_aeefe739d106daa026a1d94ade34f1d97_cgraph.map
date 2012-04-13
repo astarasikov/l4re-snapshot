@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__l4__ipc__api.html#ga7c6b2c3bd74537a700efad3b25420903" title="Wait for an incoming message from any possible sender." alt="" coords="237,5,328,35"/>
+<area shape="rect" id="node5" href="$classL4_1_1Ipc_1_1Istream.html#a8bbdc10fe3456ae1bd5c670d5af84dc1" title="Get the message tag of a received IPC." alt="" coords="208,59,357,88"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$structL4Re_1_1Util_1_1Auto__cap.html" title="{L4Re::Util::Auto_cap\&lt; L4Re::Dataspace \&gt;\n||}" alt="" coords="5,157,293,243"/>
+<area shape="rect" id="node4" href="$structL4Re_1_1Util_1_1Auto__cap.html" title="Automatic capability that implements automatic free and unmap of the capability selector." alt="" coords="56,5,243,91"/>
+<area shape="rect" id="node6" href="$structL4Re_1_1Util_1_1Auto__del__cap.html" title="{L4Re::Util::Auto_del_cap\&lt; L4::Irq \&gt;\n||}" alt="" coords="317,157,563,243"/>
+<area shape="rect" id="node8" href="$structL4Re_1_1Util_1_1Auto__del__cap.html" title="Automatic capability that implements automatic free and unmap+delete of the capability selector..." alt="" coords="333,5,547,91"/>
+</map>

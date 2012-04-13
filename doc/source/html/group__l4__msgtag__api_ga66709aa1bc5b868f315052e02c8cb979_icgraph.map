@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__l4__msgtag__api.html#gad79f36844cee8d9e670ac6eacffe3b58" title="Test for exception protocol." alt="" coords="196,5,369,35"/>
+<area shape="rect" id="node5" href="$group__l4__msgtag__api.html#ga8037f9e2e5a0f51e8be176ebb9fec80e" title="Test for IO&#45;page&#45;fault protocol." alt="" coords="184,59,381,88"/>
+<area shape="rect" id="node7" href="$group__l4__msgtag__api.html#ga9356624679d8f2716772764f86d9ff30" title="Test for page&#45;fault protocol." alt="" coords="193,112,372,141"/>
+<area shape="rect" id="node9" href="$group__l4__msgtag__api.html#gac2ed28e584ee9e5bee57b19f1da325ef" title="Test for preemption protocol." alt="" coords="189,165,376,195"/>
+<area shape="rect" id="node11" href="$group__l4__msgtag__api.html#ga326efa3cc9245f4d80d87015ab995f14" title="Test for sigma0 protocol." alt="" coords="203,219,363,248"/>
+<area shape="rect" id="node13" href="$group__l4__msgtag__api.html#gadb955c1af93173a0d46945a09779b69c" title="Test for system&#45;exception protocol." alt="" coords="181,272,384,301"/>
+</map>

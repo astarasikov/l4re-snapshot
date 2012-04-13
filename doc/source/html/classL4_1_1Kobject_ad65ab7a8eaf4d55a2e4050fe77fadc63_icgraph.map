@@ -1,0 +1,51 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classL4_1_1Task.html#ac229c77b0ee553108d0125aa767c7771" title="L4::Task::add_ku_mem" alt="" coords="212,5,380,35"/>
+<area shape="rect" id="node5" href="$classL4_1_1Irq.html#a8ae28faa2982f8b1e1408caa429746b1" title="L4::Irq::attach" alt="" coords="241,59,351,88"/>
+<area shape="rect" id="node7" href="$classL4_1_1Icu.html#a33a9538c6dffc5aea891368965663314" title="L4::Icu::bind" alt="" coords="247,112,345,141"/>
+<area shape="rect" id="node9" href="$classL4_1_1Task.html#a85d2671bbe85a1b66dbce1c3e4225a8e" title="L4::Task::cap_equal" alt="" coords="223,165,369,195"/>
+<area shape="rect" id="node11" href="$classL4_1_1Task.html#abcbb301e7ac7dd2e43f03755680ad9c6" title="L4::Task::cap_has_child" alt="" coords="211,219,381,248"/>
+<area shape="rect" id="node13" href="$classL4_1_1Task.html#a2ae267c67b2ac58fe6d4489cc5dfa85e" title="L4::Task::cap_valid" alt="" coords="227,272,365,301"/>
+<area shape="rect" id="node15" href="$classL4_1_1Irq.html#aafc35b246869fe3a01198f66fb988ec9" title="L4::Irq::chain" alt="" coords="245,325,347,355"/>
+<area shape="rect" id="node17" href="$classL4_1_1Thread.html#a816eb2af17687df31798edd12cf7f478" title="Commit the given thread&#45;attributes object." alt="" coords="225,379,367,408"/>
+<area shape="rect" id="node19" href="$classL4_1_1Factory.html#a13238f9abe032e8c6bb107b2c20d1926" title="Generic create call to the factory." alt="" coords="227,432,365,461"/>
+<area shape="rect" id="node21" href="$classL4_1_1Factory.html#a054dfa162b61fe26ebcace7e97cca432" title="L4::Factory::create_factory" alt="" coords="201,485,391,515"/>
+<area shape="rect" id="node23" href="$classL4_1_1Factory.html#a5085c44d657e806e17e7377c144a7c17" title="L4::Factory::create_gate" alt="" coords="208,539,384,568"/>
+<area shape="rect" id="node25" href="$classL4_1_1Factory.html#a741b67e7d11d552f3c17eccfd0d3bf88" title="L4::Factory::create_irq" alt="" coords="215,592,377,621"/>
+<area shape="rect" id="node27" href="$classL4_1_1Factory.html#aeaa5d2d814ce3a6c87c675b1dfc3f1db" title="L4::Factory::create_semaphore" alt="" coords="187,645,405,675"/>
+<area shape="rect" id="node29" href="$classL4_1_1Factory.html#a6a11dcf739826de26881e699bd8d53a3" title="L4::Factory::create_task" alt="" coords="209,699,383,728"/>
+<area shape="rect" id="node31" href="$classL4_1_1Factory.html#a684b3479c8829c7b3ec1d0ef074afb5c" title="L4::Factory::create_thread" alt="" coords="201,752,391,781"/>
+<area shape="rect" id="node33" href="$classL4_1_1Factory.html#a8ef0c4da0c26fd8d847f1c35e324eb69" title="L4::Factory::create_vm" alt="" coords="213,805,379,835"/>
+<area shape="rect" id="node35" href="$classL4_1_1Kobject.html#a9fe009599de49f1af438ff49998faec0" title="Decrement the in kernel reference counter for the object." alt="" coords="213,859,379,888"/>
+<area shape="rect" id="node37" href="$classL4_1_1Irq.html#a022dcb4101ba8205547c095cbc7e34a5" title="L4::Irq::detach" alt="" coords="240,912,352,941"/>
+<area shape="rect" id="node39" href="$classL4_1_1Thread.html#a77620ee9d438492867073654a705738d" title="L4::Thread::ex_regs" alt="" coords="223,965,369,995"/>
+<area shape="rect" id="node41" href="$classL4_1_1Vcon.html#a9b3674cc14d955fe87758bcf5c0231bf" title="L4::Vcon::get_attr" alt="" coords="228,1019,364,1048"/>
+<area shape="rect" id="node43" href="$classL4_1_1Scheduler.html#ac4a1c5fa33e2a6f102ece5bc1d40ed16" title="L4::Scheduler::idle_time" alt="" coords="209,1072,383,1101"/>
+<area shape="rect" id="node45" href="$classL4_1_1Icu.html#a21945937443dd5425d6372f02906c46c" title="L4::Icu::info" alt="" coords="249,1125,343,1155"/>
+<area shape="rect" id="node47" href="$classL4_1_1Scheduler.html#a31c937b691a4d335a876ea219ea10bb9" title="L4::Scheduler::is_online" alt="" coords="211,1179,381,1208"/>
+<area shape="rect" id="node49" href="$classL4_1_1Task.html#a320bbe2999fb22487d617ec7797ce960" title="L4::Task::map" alt="" coords="241,1232,351,1261"/>
+<area shape="rect" id="node51" href="$classL4_1_1Icu.html#acfe9ae0d990609e8757b372cf061834f" title="L4::Icu::mask" alt="" coords="243,1285,349,1315"/>
+<area shape="rect" id="node53" href="$classL4_1_1Thread.html#a61ecf8a06d2b4996ebb67180b1d5d35c" title="Apply sender modifiction rules." alt="" coords="197,1339,395,1368"/>
+<area shape="rect" id="node55" href="$classL4_1_1Icu.html#a41d437683626f6e3a512ae5b28f42544" title="L4::Icu::msi_info" alt="" coords="235,1392,357,1421"/>
+<area shape="rect" id="node57" href="$classL4_1_1Vcon.html#a5b7f35fa3ee02328f8888119c975e3f2" title="L4::Vcon::read" alt="" coords="239,1445,353,1475"/>
+<area shape="rect" id="node59" href="$classL4_1_1Irq.html#ac694d3c7e3440907fb8b5c9b580c3cdb" title="L4::Irq::receive" alt="" coords="239,1499,353,1528"/>
+<area shape="rect" id="node61" href="$classL4_1_1Thread.html#ad19cbe78dd5ee887d76238a97d25b35e" title="Register an IRQ that will trigger upon deletion events." alt="" coords="199,1552,393,1581"/>
+<area shape="rect" id="node63" href="$classL4_1_1Vm.html#a8459a4a0f0ea9ace5248ee2e1f61d809" title="L4::Vm::run" alt="" coords="248,1605,344,1635"/>
+<area shape="rect" id="node65" href="$classL4_1_1Scheduler.html#ae80cdd60acd6223f98aa37be4cdd8bf1" title="L4::Scheduler::run_thread" alt="" coords="203,1659,389,1688"/>
+<area shape="rect" id="node67" href="$classL4_1_1Vcon.html#aa07ed95540c20262fa54df8f4f7dab69" title="L4::Vcon::send" alt="" coords="239,1712,353,1741"/>
+<area shape="rect" id="node69" href="$classL4_1_1Vcon.html#a2e4ede32765da35d522aace2e1100d6d" title="L4::Vcon::set_attr" alt="" coords="229,1765,363,1795"/>
+<area shape="rect" id="node71" href="$classL4_1_1Icu.html#ab2d78ee6c906239bde95f669a10405de" title="L4::Icu::set_mode" alt="" coords="229,1819,363,1848"/>
+<area shape="rect" id="node73" href="$classL4_1_1Thread.html#ac68acebebf79b8a5e76f6232f404091d" title="Get consumed timed of thread in ns." alt="" coords="213,1872,379,1901"/>
+<area shape="rect" id="node75" href="$classL4_1_1Debugger.html#a1889332d95e3a510bbb8f982b4942f54" title="L4::Debugger::switch_log" alt="" coords="205,1925,387,1955"/>
+<area shape="rect" id="node77" href="$classL4_1_1Thread.html#a70bc52d2d36a85c095a3e05596993d65" title="Switch execution to this thread." alt="" coords="219,1979,373,2008"/>
+<area shape="rect" id="node79" href="$classL4_1_1Irq.html#a2e67ea71db3253d47bef85b930b5a194" title="L4::Irq::trigger" alt="" coords="241,2032,351,2061"/>
+<area shape="rect" id="node81" href="$classL4_1_1Icu.html#a852e7d20906fcf87b9dc1d4ea1cf2de8" title="L4::Icu::unbind" alt="" coords="239,2085,353,2115"/>
+<area shape="rect" id="node83" href="$classL4_1_1Task.html#ad14a3bf59ff1449fcf7a307587c28175" title="L4::Task::unmap" alt="" coords="233,2139,359,2168"/>
+<area shape="rect" id="node85" href="$classL4_1_1Task.html#a21290f72488ab9a599ac8739436a2b2e" title="L4::Task::unmap_batch" alt="" coords="212,2192,380,2221"/>
+<area shape="rect" id="node87" href="$classL4_1_1Icu.html#ad54894d64ee32e1aa737ceee7a01c6a1" title="L4::Icu::unmask" alt="" coords="235,2245,357,2275"/>
+<area shape="rect" id="node89" href="$classL4_1_1Irq.html#a4b42ef9f65bf806f000862a9b00b7414" title="L4::Irq::unmask" alt="" coords="236,2299,356,2328"/>
+<area shape="rect" id="node91" href="$classL4_1_1Thread.html#af88410084b23685f43bb1ce5070428cd" title="L4::Thread::vcpu_control" alt="" coords="207,2352,385,2381"/>
+<area shape="rect" id="node93" href="$classL4_1_1Thread.html#a32bb06d5ee3d08a69d6a2f2b37f80cdc" title="L4::Thread::vcpu_control_ext" alt="" coords="193,2405,399,2435"/>
+<area shape="rect" id="node95" href="$classL4_1_1Thread.html#a9fd6b49f3f205da2cc2b9d24cf1c9569" title="vCPU resume, commit." alt="" coords="177,2459,415,2488"/>
+<area shape="rect" id="node97" href="$classL4_1_1Irq.html#a184f08aabbb948d4ecd5e9ed30253546" title="L4::Irq::wait" alt="" coords="249,2512,343,2541"/>
+<area shape="rect" id="node99" href="$classL4_1_1Vcon.html#a9f315c8727ffbd444e19e0c2528c9a93" title="L4::Vcon::write" alt="" coords="239,2565,353,2595"/>
+</map>

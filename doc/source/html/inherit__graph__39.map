@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classL4_1_1Exception__tracer.html" title="Back&#45;trace support for exceptions." alt="" coords="5,112,157,141"/>
+<area shape="rect" id="node3" href="$classL4_1_1Base__exception.html" title="Base class for all exceptions, thrown by the L4Re framework." alt="" coords="205,112,352,141"/>
+<area shape="rect" id="node5" href="$classL4_1_1Invalid__capability.html" title="Indicates that an invalid object was invoked." alt="" coords="400,59,552,88"/>
+<area shape="rect" id="node7" href="$classL4_1_1Runtime__error.html" title="Exception for an abstract runtime error." alt="" coords="408,112,544,141"/>
+<area shape="rect" id="node19" href="$classL4_1_1Unknown__error.html" title="Exception for an unknown condition." alt="" coords="405,165,547,195"/>
+<area shape="rect" id="node9" href="$classL4_1_1Bounds__error.html" title="Access out of bounds." alt="" coords="633,5,764,35"/>
+<area shape="rect" id="node11" href="$classL4_1_1Com__error.html" title="Error conditions during IPC." alt="" coords="643,59,755,88"/>
+<area shape="rect" id="node13" href="$classL4_1_1Element__already__exists.html" title="Exception for duplicate element insertions." alt="" coords="601,112,796,141"/>
+<area shape="rect" id="node15" href="$classL4_1_1Element__not__found.html" title="Exception for a failed lookup (element not found)." alt="" coords="615,165,783,195"/>
+<area shape="rect" id="node17" href="$classL4_1_1Out__of__memory.html" title="Exception signalling insufficient memory." alt="" coords="625,219,772,248"/>
+</map>

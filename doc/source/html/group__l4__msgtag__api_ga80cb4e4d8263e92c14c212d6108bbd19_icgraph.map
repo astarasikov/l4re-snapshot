@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__api__calls__fiasco.html#ga62cd4adfb0915e034d528472c73ad270" title="Return the offset of the entry in the GDT." alt="" coords="145,5,343,35"/>
+<area shape="rect" id="node5" href="$group__api__calls__fiasco.html#ga889e52253474f768149a012b94fac148" title="Set GDT segment descriptors." alt="" coords="187,59,301,88"/>
+<area shape="rect" id="node7" href="$group__api__calls__fiasco.html#ga0e3c6381db5aa3b08701591a5cf30d33" title="Set LDT segments descriptors." alt="" coords="189,112,299,141"/>
+<area shape="rect" id="node9" href="$classL4_1_1Meta.html#ad2970ab8dea8d37d030a5cc6a3282ea3" title="Get the protocol number that must be used for the interface with the index idx." alt="" coords="173,165,315,195"/>
+<area shape="rect" id="node11" href="$group__l4__thread__api.html#ga5e47131f486f920826b5f72dad82bafe" title="Yield current time slice." alt="" coords="185,219,303,248"/>
+<area shape="rect" id="node13" href="$classL4_1_1Thread.html#a61ecf8a06d2b4996ebb67180b1d5d35c" title="Apply sender modifiction rules." alt="" coords="145,272,343,301"/>
+<area shape="rect" id="node15" href="$classL4_1_1Meta.html#a6adb8b3cc4ec1afe05b98fe7e787cc20" title="Get the number of interfaces implemented by this object." alt="" coords="152,325,336,355"/>
+<area shape="rect" id="node17" href="$classL4_1_1Meta.html#acc9ee34a99663b1f03032bfcc41e1704" title="Figure out if the object supports the given protocol (number)." alt="" coords="173,379,315,408"/>
+</map>

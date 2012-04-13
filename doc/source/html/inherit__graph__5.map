@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classcxx_1_1Base__slab.html" title="cxx::Base_slab\&lt; sizeof(Type), Slab_size, Max_free, Alloc \&gt;" alt="" coords="5,5,400,35"/>
+<area shape="rect" id="node3" href="$classcxx_1_1Slab.html" title="Slab allocator for object of type Type." alt="" coords="449,5,759,35"/>
+</map>

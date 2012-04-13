@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__l4__fpage__api.html#ga2d2cf6e4004f8476be5ca1839cfe50d8" title="Determine maximum flex page size of a region." alt="" coords="269,5,421,35"/>
+<area shape="rect" id="node5" href="$group__l4__memory__api.html#gadf25ad94ff03dd1435763a22a8d68910" title="Round address up to the next page." alt="" coords="288,59,403,88"/>
+<area shape="rect" id="node7" href="$group__l4__memory__api.html#ga8b1180cad341f2ed7ff0da47c61b30f0" title="Round address up to the next flex page with bits size." alt="" coords="291,112,400,141"/>
+<area shape="rect" id="node9" href="$group__l4__memory__api.html#gabf09fb091f38fd19c9ffe9390e213010" title="Round an address down to the next lower page boundary." alt="" coords="289,165,401,195"/>
+<area shape="rect" id="node11" href="$group__l4__memory__api.html#ga7e790a6a40066410b02051210cfeb79b" title="Round an address down to the next lower flex page with size bits." alt="" coords="293,219,397,248"/>
+</map>

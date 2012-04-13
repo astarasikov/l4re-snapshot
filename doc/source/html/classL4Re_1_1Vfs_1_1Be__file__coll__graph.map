@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$classL4Re_1_1Vfs_1_1File.html" title="The basic interface for an open POSIX file." alt="" coords="301,331,424,573"/>
+<area shape="rect" id="node4" href="$classL4Re_1_1Vfs_1_1Generic__file.html" title="The common interface for an open POSIX file." alt="" coords="5,32,168,256"/>
+<area shape="rect" id="node6" href="$classL4Re_1_1Vfs_1_1Regular__file.html" title="Interface for a POSIX file that provides regular file semantics." alt="" coords="192,6,355,282"/>
+<area shape="rect" id="node8" href="$classL4Re_1_1Vfs_1_1Directory.html" title="Interface for a POSIX file that is a directory." alt="" coords="379,15,525,273"/>
+<area shape="rect" id="node10" href="$classL4Re_1_1Vfs_1_1Special__file.html" title="Interface for a POSIX file that provides special file semantics." alt="" coords="549,93,709,195"/>
+</map>

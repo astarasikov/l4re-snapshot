@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classL4Re_1_1Dataspace.html#a4989267bdb3c9086ce5cd45258c102c4" title="Get information on the data space." alt="" coords="223,99,383,128"/>
+<area shape="rect" id="node5" href="$classL4_1_1Ipc_1_1Iostream.html#ad4aa6f18b4ecd7938fc194b2c4498916" title="Do an IPC call using the message in the output stream and receiving to the input stream." alt="" coords="432,45,589,75"/>
+<area shape="rect" id="node11" href="$group__l4__ipc__err__api.html#ga4c287ff9f500479c73556785b4ca4807" title="Return error code of a system call return message tag." alt="" coords="476,99,545,128"/>
+<area shape="rect" id="node13" href="$group__l4__utcb__api.html#ga0e524ed43116ca4b9ec5b3c85e48d84f" title="Get the UTCB address." alt="" coords="679,125,745,155"/>
+<area shape="rect" id="node7" href="$group__l4__ipc__api.html#gad1b4180d489c3fa25386a93cda95d00b" title="Object call (usual invocation)." alt="" coords="669,5,755,35"/>
+<area shape="rect" id="node9" href="$classL4_1_1Ipc_1_1Istream.html#a8bbdc10fe3456ae1bd5c670d5af84dc1" title="Get the message tag of a received IPC." alt="" coords="637,59,787,88"/>
+</map>

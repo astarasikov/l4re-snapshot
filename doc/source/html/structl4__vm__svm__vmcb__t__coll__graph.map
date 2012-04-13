@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$structl4__vm__svm__vmcb__control__area.html" title="VMCB structure for SVM VMs." alt="" coords="5,549,227,1033"/>
+<area shape="rect" id="node4" href="$structl4__vm__svm__vmcb__state__save__area.html" title="State save area structure for SVM VMs." alt="" coords="251,384,499,1197"/>
+<area shape="rect" id="node6" href="$structl4__vm__svm__vmcb__state__save__area__seg.html" title="State save area segment selector struct." alt="" coords="236,6,513,143"/>
+</map>

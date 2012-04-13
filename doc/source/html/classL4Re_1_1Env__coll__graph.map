@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$structl4re__env__t.html" title="Initial Environment structure (C version)." alt="" coords="111,211,239,469"/>
+<area shape="rect" id="node4" href="$structl4re__env__cap__entry__t.html" title="Entry in the L4Re environment array for the named inital objects." alt="" coords="5,6,187,143"/>
+<area shape="rect" id="node6" href="$unionl4__fpage__t.html" title="L4 flexpage type." alt="" coords="211,23,299,126"/>
+</map>

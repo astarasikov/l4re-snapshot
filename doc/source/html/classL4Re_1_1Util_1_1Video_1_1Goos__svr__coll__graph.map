@@ -1,0 +1,9 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$structL4Re_1_1Video_1_1View_1_1Info.html" title="Information structure of a view." alt="" coords="5,933,203,1296"/>
+<area shape="rect" id="node4" href="$classL4Re_1_1Video_1_1Pixel__info.html" title="Pixel information." alt="" coords="112,435,275,867"/>
+<area shape="rect" id="node8" href="$structL4Re_1_1Video_1_1Goos_1_1Info.html" title="Information structure of a goos." alt="" coords="227,1003,408,1227"/>
+<area shape="rect" id="node6" href="$classL4Re_1_1Video_1_1Color__component.html" title="A color component." alt="" coords="84,49,303,273"/>
+<area shape="rect" id="node11" href="$classL4_1_1Cap.html" title="{L4::Cap\&lt; L4Re::Dataspace \&gt;\n||+ Cap()\l+ Cap()\l+ Cap()\l+ Cap()\l+ Cap()\l+ move()\l+ operator&#45;\&gt;()\l&#45; Cap()\l}" alt="" coords="432,1011,640,1218"/>
+<area shape="rect" id="node13" href="$classL4_1_1Cap__base.html" title="Base class for all kinds of capabilities." alt="" coords="371,6,603,317"/>
+<area shape="rect" id="node15" href="$classL4_1_1Cap.html" title="Capability Selector a la C++." alt="" coords="501,547,619,754"/>
+</map>

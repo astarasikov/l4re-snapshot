@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$structl4__vcpu__state__t.html" title="State of a vCPU." alt="" coords="5,5,128,35"/>
+<area shape="rect" id="node3" href="$classL4vcpu_1_1Vcpu.html" title="C++ implementation of the vCPU save state area." alt="" coords="176,5,283,35"/>
+</map>

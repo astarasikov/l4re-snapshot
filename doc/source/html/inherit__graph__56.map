@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$classL4_1_1Kobject__t.html" title="L4::Kobject_t\&lt; Icu, Irq_eio, L4_PROTO_IRQ \&gt;" alt="" coords="7,32,308,61"/>
+<area shape="rect" id="node3" href="$classL4_1_1Icu.html" title="C++ version of an interrupt controller." alt="" coords="359,32,420,61"/>
+<area shape="rect" id="node5" href="$classL4_1_1Kobject__t.html" title="L4::Kobject_t\&lt; Event, L4::Icu, L4Re::Protocol::Event \&gt;" alt="" coords="469,5,832,35"/>
+<area shape="rect" id="node9" href="$classL4_1_1Kobject__t.html" title="L4::Kobject_t\&lt; Vcon, Icu, L4_PROTO_LOG \&gt;" alt="" coords="501,59,800,88"/>
+<area shape="rect" id="node7" href="$classL4Re_1_1Event.html" title="Event class." alt="" coords="881,5,977,35"/>
+<area shape="rect" id="node11" href="$classL4_1_1Vcon.html" title="C++ L4 Vcon." alt="" coords="891,59,968,88"/>
+<area shape="rect" id="node13" href="$classL4_1_1Kobject__t.html" title="L4::Kobject_t\&lt; Log, L4::Vcon, L4_PROTO_LOG \&gt;" alt="" coords="1028,59,1353,88"/>
+<area shape="rect" id="node15" href="$classL4Re_1_1Log.html" title="Log interface class." alt="" coords="1404,59,1487,88"/>
+</map>

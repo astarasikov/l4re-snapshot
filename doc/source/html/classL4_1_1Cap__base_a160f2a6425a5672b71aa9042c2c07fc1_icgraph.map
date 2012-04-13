@@ -1,0 +1,23 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classL4_1_1Irq.html#a8ae28faa2982f8b1e1408caa429746b1" title="L4::Irq::attach" alt="" coords="293,5,403,35"/>
+<area shape="rect" id="node5" href="$classL4_1_1Icu.html#a33a9538c6dffc5aea891368965663314" title="L4::Icu::bind" alt="" coords="299,59,397,88"/>
+<area shape="rect" id="node7" href="$classL4_1_1Ipc__gate.html#a7237cd26b925c914a3a1ea63bac488e4" title="Bind the IPC&#45;gate to the thread." alt="" coords="257,112,439,141"/>
+<area shape="rect" id="node9" href="$classL4_1_1Task.html#a85d2671bbe85a1b66dbce1c3e4225a8e" title="L4::Task::cap_equal" alt="" coords="275,165,421,195"/>
+<area shape="rect" id="node11" href="$classL4_1_1Task.html#abcbb301e7ac7dd2e43f03755680ad9c6" title="L4::Task::cap_has_child" alt="" coords="263,219,433,248"/>
+<area shape="rect" id="node13" href="$classL4_1_1Task.html#a2ae267c67b2ac58fe6d4489cc5dfa85e" title="L4::Task::cap_valid" alt="" coords="279,272,417,301"/>
+<area shape="rect" id="node15" href="$classL4_1_1Irq.html#aafc35b246869fe3a01198f66fb988ec9" title="L4::Irq::chain" alt="" coords="297,325,399,355"/>
+<area shape="rect" id="node17" href="$classL4Re_1_1Util_1_1Smart__count__cap.html#a5886f75acada6cddee1b8c3192476b93" title="copy operation for L4::Smart_cap (increment ref count)." alt="" coords="228,379,468,408"/>
+<area shape="rect" id="node19" href="$classL4_1_1Factory.html#a054dfa162b61fe26ebcace7e97cca432" title="L4::Factory::create_factory" alt="" coords="253,432,443,461"/>
+<area shape="rect" id="node21" href="$classL4_1_1Factory.html#a5085c44d657e806e17e7377c144a7c17" title="L4::Factory::create_gate" alt="" coords="260,485,436,515"/>
+<area shape="rect" id="node23" href="$classL4_1_1Factory.html#a741b67e7d11d552f3c17eccfd0d3bf88" title="L4::Factory::create_irq" alt="" coords="267,539,429,568"/>
+<area shape="rect" id="node25" href="$classL4_1_1Factory.html#aeaa5d2d814ce3a6c87c675b1dfc3f1db" title="L4::Factory::create_semaphore" alt="" coords="239,592,457,621"/>
+<area shape="rect" id="node27" href="$classL4_1_1Factory.html#a6a11dcf739826de26881e699bd8d53a3" title="L4::Factory::create_task" alt="" coords="261,645,435,675"/>
+<area shape="rect" id="node29" href="$classL4_1_1Factory.html#a684b3479c8829c7b3ec1d0ef074afb5c" title="L4::Factory::create_thread" alt="" coords="253,699,443,728"/>
+<area shape="rect" id="node31" href="$classL4_1_1Factory.html#a8ef0c4da0c26fd8d847f1c35e324eb69" title="L4::Factory::create_vm" alt="" coords="265,752,431,781"/>
+<area shape="rect" id="node33" href="$classL4Re_1_1Util_1_1Smart__cap__auto.html#a4dfba4f2c4731689f1a53992c83371a6" title="free operation for L4::Smart_cap." alt="" coords="233,805,463,835"/>
+<area shape="rect" id="node35" href="$classL4_1_1Scheduler.html#ac4a1c5fa33e2a6f102ece5bc1d40ed16" title="L4::Scheduler::idle_time" alt="" coords="261,859,435,888"/>
+<area shape="rect" id="node37" href="$classL4_1_1Task.html#a320bbe2999fb22487d617ec7797ce960" title="L4::Task::map" alt="" coords="293,912,403,941"/>
+<area shape="rect" id="node39" href="$classL4Re_1_1Util_1_1Event__buffer__consumer__t.html#a0fff556f2248a30514170e0163fc9e2e" title="Continuously wait for events and process them." alt="" coords="193,965,503,995"/>
+<area shape="rect" id="node41" href="$classL4_1_1Thread.html#ad19cbe78dd5ee887d76238a97d25b35e" title="Register an IRQ that will trigger upon deletion events." alt="" coords="251,1019,445,1048"/>
+<area shape="rect" id="node43" href="$classL4_1_1Icu.html#a852e7d20906fcf87b9dc1d4ea1cf2de8" title="L4::Icu::unbind" alt="" coords="291,1072,405,1101"/>
+</map>

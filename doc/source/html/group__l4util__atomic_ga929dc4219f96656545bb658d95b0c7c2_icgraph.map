@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__l4util__bitops.html#ga54de534dc4cb8daba99590f38edfd12c" title="Bit test and reset." alt="" coords="189,5,267,35"/>
+<area shape="rect" id="node5" href="$group__l4util__bitops.html#gaa19a970e0ccba655837ac519d5adfdf0" title="Bit test and set." alt="" coords="189,59,267,88"/>
+<area shape="rect" id="node7" href="$group__l4util__bitops.html#gab1ab1fd14748d27abd7862942b5ae46b" title="Clear bit in memory." alt="" coords="172,112,284,141"/>
+<area shape="rect" id="node9" href="$group__l4util__bitops.html#ga1e5017ce33e0af71dc00a526ffa46f0b" title="Set bit in memory." alt="" coords="177,165,279,195"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__l4__ipc__api.html#gade88f09d2fb631c1fc7453f15578b936" title="Sleep for an amount of time." alt="" coords="183,5,281,35"/>
+<area shape="rect" id="node7" href="$group__api__calls__rt__sched.html#ga93259dce01b7ac215843eacbd841956d" title="Wait for the next period, skipping all unused time slices." alt="" coords="167,59,297,88"/>
+<area shape="rect" id="node9" href="$group__l4__thread__api.html#ga5e47131f486f920826b5f72dad82bafe" title="Yield current time slice." alt="" coords="173,112,291,141"/>
+<area shape="rect" id="node5" href="$group__l4util__api.html#ga22b84c86c93ce54636a4e91d6896a822" title="Go sleep and never wake up." alt="" coords="348,5,473,35"/>
+</map>

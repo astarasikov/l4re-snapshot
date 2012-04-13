@@ -1,0 +1,48 @@
+#! /bin/sh
+
+QSA=qemu-system-arm
+
+[ -n "$1" ] && IMAGE=$1
+
+if [ -z "$IMAGE" ]; then
+  if command -v dialog >/dev/null; then
+    entries=
+    for i in *.elf; do
+      if [ $i != bootstrap.elf ]; then
+	n=${i%.elf}
+	entries="$entries $i ${n#bootstrap_}"
+      fi
+    done
+
+    if [ -z "$entries" ]; then
+      echo "Nothing to there, nothing to select, aborting."
+      exit 1
+    fi
+
+    tmpfile=`tempfile 2>/dev/null` || tmpfile=/tmp/test$$
+    trap "rm -f $tmpfile" 0 1 2 5 15
+
+    dialog --menu "Image selection to run" 20 60 20 $entries 2> $tmpfile
+
+    if [ $? ]; then
+      IMAGE=$(cat $tmpfile)
+    else
+      IMAGE=
+    fi
+  else
+    echo "You might want to install 'dialog' to get a selection screen!"
+  fi
+fi
+
+if [ -n "$IMAGE" ]; then
+
+  M=realview
+  if $QSA -M \? | grep -qw realview-eb; then
+    M=realview-eb
+  fi
+
+  # later QEmus require realview-eb...
+  # and maybe -serial stdio is required (seems not if -nographic is given)
+  $QSA -M $M -cpu arm926 -kernel $IMAGE \
+       -m 256 -nographic -net nic -net user
+fi

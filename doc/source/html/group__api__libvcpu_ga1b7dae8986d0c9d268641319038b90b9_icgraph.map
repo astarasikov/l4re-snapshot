@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__api__libvcpu.html#ga7efe20b0bdcde32e91e4445629d801c7" title="Halt the vCPU (sleep)." alt="" coords="212,5,305,35"/>
+<area shape="rect" id="node5" href="$group__api__libvcpu.html#ga4e97ce8969b50a6d914e8612a9cb2a15" title="Restore a previously saved IRQ/event state." alt="" coords="189,59,328,88"/>
+</map>

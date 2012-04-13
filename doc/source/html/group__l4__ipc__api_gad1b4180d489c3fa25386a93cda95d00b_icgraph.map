@@ -1,0 +1,15 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classL4_1_1Ipc_1_1Iostream.html#ad4aa6f18b4ecd7938fc194b2c4498916" title="Do an IPC call using the message in the output stream and receiving to the input stream." alt="" coords="163,59,320,88"/>
+<area shape="rect" id="node15" href="$group__api__calls__fiasco.html#ga62cd4adfb0915e034d528472c73ad270" title="Return the offset of the entry in the GDT." alt="" coords="143,112,340,141"/>
+<area shape="rect" id="node17" href="$group__api__calls__fiasco.html#ga889e52253474f768149a012b94fac148" title="Set GDT segment descriptors." alt="" coords="184,165,299,195"/>
+<area shape="rect" id="node19" href="$group__api__calls__fiasco.html#ga0e3c6381db5aa3b08701591a5cf30d33" title="Set LDT segments descriptors." alt="" coords="187,219,296,248"/>
+<area shape="rect" id="node21" href="$classL4_1_1Meta.html#ad2970ab8dea8d37d030a5cc6a3282ea3" title="Get the protocol number that must be used for the interface with the index idx." alt="" coords="171,272,312,301"/>
+<area shape="rect" id="node23" href="$classL4_1_1Thread.html#a61ecf8a06d2b4996ebb67180b1d5d35c" title="Apply sender modifiction rules." alt="" coords="143,325,340,355"/>
+<area shape="rect" id="node25" href="$classL4_1_1Meta.html#a6adb8b3cc4ec1afe05b98fe7e787cc20" title="Get the number of interfaces implemented by this object." alt="" coords="149,379,333,408"/>
+<area shape="rect" id="node27" href="$classL4_1_1Meta.html#acc9ee34a99663b1f03032bfcc41e1704" title="Figure out if the object supports the given protocol (number)." alt="" coords="171,432,312,461"/>
+<area shape="rect" id="node5" href="$classL4Re_1_1Dataspace.html#a1dc3753a5a0cb425f74466bb79a52150" title="Allocate a range in the dataspace." alt="" coords="391,5,577,35"/>
+<area shape="rect" id="node7" href="$classL4Re_1_1Dataspace.html#a4989267bdb3c9086ce5cd45258c102c4" title="Get information on the data space." alt="" coords="404,59,564,88"/>
+<area shape="rect" id="node13" href="$classL4Re_1_1Dataspace.html#a4fa37ebc3ddac165e1491dcbda121d70" title="Get the physical addresses of a data space." alt="" coords="400,112,568,141"/>
+<area shape="rect" id="node9" href="$classL4Re_1_1Dataspace.html#a3e81d864adcc2c7a5ce251d6f47d76fa" title="Get flags of the data space." alt="" coords="627,32,795,61"/>
+<area shape="rect" id="node11" href="$classL4Re_1_1Dataspace.html#a4b5a994a93cb92028309bd901054f138" title="Get size of a data space." alt="" coords="629,85,792,115"/>
+</map>

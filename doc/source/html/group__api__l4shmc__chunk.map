@@ -1,0 +1,5 @@
+<map id="structs" name="structs">
+<area shape="rect" id="node1" href="$group__api__l4shm.html" title="L4SHM provides a shared memory infrastructure that establishes a shared memory area between multiple ..." alt="" coords="5,32,176,61"/>
+<area shape="rect" id="node2" href="$group__api__l4shmc__chunk__cons.html" title="Consumer" alt="" coords="341,5,429,35"/>
+<area shape="rect" id="node4" href="$group__api__l4shmc__chunk__prod.html" title="Producer" alt="" coords="347,59,424,88"/>
+</map>

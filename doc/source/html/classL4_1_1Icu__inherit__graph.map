@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node7" href="$classL4_1_1Kobject__t.html" title="{L4::Kobject_t\&lt; Event, L4::Icu, L4Re::Protocol::Event \&gt;\n|+ Protocol\l|}" alt="" coords="5,603,368,688"/>
+<area shape="rect" id="node11" href="$classL4_1_1Kobject__t.html" title="{L4::Kobject_t\&lt; Vcon, Icu, L4_PROTO_LOG \&gt;\n|+ Protocol\l|}" alt="" coords="392,603,691,688"/>
+<area shape="rect" id="node2" href="$classL4_1_1Kobject__t.html" title="{L4::Kobject_t\&lt; Icu, Irq_eio, L4_PROTO_IRQ \&gt;\n|+ Protocol\l|}" alt="" coords="132,157,433,243"/>
+<area shape="rect" id="node4" href="$classL4_1_1Kobject__t.html" title="Helper class to create an L4Re interface class that is derived from a single base class..." alt="" coords="145,5,420,91"/>
+<area shape="rect" id="node9" href="$classL4Re_1_1Event.html" title="Event class." alt="" coords="91,739,283,946"/>
+<area shape="rect" id="node13" href="$classL4_1_1Vcon.html" title="C++ L4 Vcon." alt="" coords="488,739,595,946"/>
+<area shape="rect" id="node15" href="$classL4_1_1Kobject__t.html" title="{L4::Kobject_t\&lt; Log, L4::Vcon, L4_PROTO_LOG \&gt;\n|+ Protocol\l|}" alt="" coords="379,997,704,1083"/>
+<area shape="rect" id="node17" href="$classL4Re_1_1Log.html" title="Log interface class." alt="" coords="488,1133,595,1288"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node9" href="$classL4_1_1Kobject__t.html" title="{L4::Kobject_t\&lt; Vm, Task, L4_PROTO_VM \&gt;\n|+ Protocol\l|}" alt="" coords="27,675,317,760"/>
+<area shape="rect" id="node2" href="$classL4_1_1Kobject__t.html" title="{L4::Kobject_t\&lt; Task, Kobject, L4_PROTO_TASK \&gt;\n|+ Protocol\l|}" alt="" coords="8,245,336,331"/>
+<area shape="rect" id="node4" href="$classL4_1_1Kobject.html" title="Base class for all kinds of kernel objects, referred to by capabilities." alt="" coords="5,6,120,178"/>
+<area shape="rect" id="node6" href="$classL4_1_1Kobject__t.html" title="Helper class to create an L4Re interface class that is derived from a single base class..." alt="" coords="144,49,419,135"/>
+<area shape="rect" id="node11" href="$classL4_1_1Vm.html" title="Virtual machine." alt="" coords="119,811,225,1000"/>
+</map>

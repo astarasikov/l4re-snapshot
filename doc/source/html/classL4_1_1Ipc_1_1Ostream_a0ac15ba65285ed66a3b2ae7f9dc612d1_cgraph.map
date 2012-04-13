@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__l4__ipc__api.html#ga97806ca4e37892badd5a68300c0c36e3" title="Send a message to an object (do not wait for a reply)." alt="" coords="252,5,348,35"/>
+<area shape="rect" id="node5" href="$classL4_1_1Ipc_1_1Ostream.html#a26b2b7f1e8a3cc3ad60445d2fb257e98" title="Extract the L4 message tag from the stream." alt="" coords="223,59,377,88"/>
+</map>

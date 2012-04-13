@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$classL4_1_1Kobject__t.html" title="{L4::Kobject_t\&lt; Parent, L4::Kobject, L4Re::Protocol::Parent \&gt;\n|+ Protocol\l|}" alt="" coords="5,245,408,331"/>
+<area shape="rect" id="node4" href="$classL4_1_1Kobject.html" title="Base class for all kinds of kernel objects, referred to by capabilities." alt="" coords="40,6,155,178"/>
+<area shape="rect" id="node6" href="$classL4_1_1Kobject__t.html" title="Helper class to create an L4Re interface class that is derived from a single base class..." alt="" coords="179,49,453,135"/>
+</map>

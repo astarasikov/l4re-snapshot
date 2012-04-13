@@ -1,0 +1,266 @@
+
+This file shall briefly describe the ways how to handle the snapshot.
+
+We would really like that you read all of the README before asking
+questions, although this file might be longer than you (and we) want.
+Thanks a lot in advance.
+
+
+
+Host system requirements
+========================
+
+ The host system must a be a x86 based 32bit system with a recent Linux
+ distribution installed and at least 2GB of free disk space.
+
+ All necessary tools required by the build are available from the provided
+ packages of the Linux distributions (except the cross compiler needed for
+ ARM compiles). You might want to run 'make check_build_tools' in the src/l4
+ directory to verify the common tools are installed.
+
+ You are free to use any Linux distribution you like, or even BSDs or any of
+ its derivatives. 64bit Linux systems (referring to 64bit programs, not only
+ a 64bit kernel) are also known to work. But then you're on your own and
+ should know your system.  Especially tool versions should be recent, as
+ installed on the listed distributions below.
+
+ We test the snapshot on the following distributions:
+   - Debian 6.0 or later
+   - Ubuntu 10.10 or later
+
+
+
+Cross compiling for ARM
+=======================
+
+ For compiling software for the ARM target on an x86 host a cross compiler
+ is needed.
+
+ Codesourcery provides the necessary cross-compiler for x86 hosts. Install
+   the 'GNU/Linux' version available at:
+     http://www.codesourcery.com/sgpp/lite/arm/download.html
+
+   Currently 'Sourcery G++ Lite 2010.09-50' is known to work.
+   
+ Alternatively:
+   You have your own gcc cross compiler with at least version 4.1 installed
+   that is known to be working.
+
+
+ Before compiling, make sure the compiler and its tools are available in
+ your PATH with the prefix arm-linux-, .e.g. arm-linux-gcc.
+ To ease this the bin directory in the snapshot contains a small script that
+ will call the compiler tools appropriately.  Either put the bin directory
+ in your PATH environment variable or make this script available in your
+ local bin directory (an example is displayed after 'make setup').
+ The script will use the environment variable GCC_PATH_PREFIX to find the
+ compiler you installed. An example could be:
+   export GCC_PATH_PREFIX=/opt/arm-2010.09/bin/arm-none-linux-gnueabi- 
+
+ The build script will take care of using the bin directory of the
+ snapshot but for convenient usage during development it is advised to have
+ the tool generally available.
+
+Building
+========
+
+ In the upper most directory of the archive (the same directory where this
+ README is located) contains a Makefile. To setup the snapshot issue
+   make setup
+ and to build it issue
+   make
+ in the snapshot directory. The make process uses parallel building.
+
+Directory layout
+================
+
+   - bin
+      arm-linux-*: Some scripts, one for calling compiler tools
+                   appropriately.
+      qemu-arm-l4: Small script to start qemu with the built images and
+                   appropriate command line.
+   - doc
+      source
+        Contains documentation automatically generated from the documented
+        source code. Overview documentation is also included there.
+        l4re-source.pdf: PDF file of the generated code
+        html: HTML version of the documentation. Can be viewed in any recent
+              web browser.
+   - obj
+      Generated object code will be placed under the obj directory.
+      fiasco
+        Fiasco build directories, e.g.:
+          arm-mpcore: configuration built for the ARM11MPCore board
+          arm-up:     configuration built for QEmu (realview, single core)
+          ia32:       configuration for x86-32
+          ux:         configuration for Fiasco-UX (x86-32 host)
+      l4
+        L4Re build directories, e.g:
+          arm-rv:  L4Re built for ARM realview target
+          x86:     L4Re built for x86
+
+      l4linux
+        L4Linux build directories, e.g.:
+	  ux:      L4Linux build without drivers
+
+   - src
+      Contains the source code:
+      kernel/fiasco: Fiasco source
+      l4:            L4Re source
+      l4linux:       L4Linux
+      tools:         Tools needed for compilation
+
+   - files
+      Miscellaneous files.
+      ramdisk-x86.rd:    Ramdisks for (L4)Linux.
+      ramdisk-arm.rd:    Ramdisks for (L4)Linux.
+
+ All object directories are built by default.
+
+Serial Console
+==============
+
+ If you happen to use Windows as your workstation OS we recommend using
+ PuTTY (free, open source tool, ask your favorite search engine) as a
+ terminal emulator. Hyperterm is not recommended because it is basically
+ unable to display all the output properly.
+ On Linux hosts the situation is much more relaxed, minicom and PuTTY are
+ known to work, as probably any other solution.
+
+Qemu
+====
+
+ To try out the built ARM images, go to obj/l4/arm-rv/images and call
+ the qemu-arm-l4 script (this script is located in the bin directory of
+ the snapshot and is found through your PATH setting). This script will
+ start 'qemu-system-arm' with the appropriate arguments. You should see the
+ system starting and finally see "Hello World" scroll by periodically.
+
+Generating Images
+=================
+
+ Images are files that contain all of the binaries needed to boot the
+ system. This is merely needed on ARM only. The configuration file can be
+ found in
+   src/l4/conf/modules.list
+ and contains entries with binaries listed.
+ The search paths, i.e. the paths where to look for the images is specified
+ in the make variable MODULE_SEARCH_PATH. The binary directory of the
+ build tree is automatically searched. Multiple paths can be given,
+ separated by colons (as with the shell's PATH variable). The default
+ settings are located in obj/l4/*/Makeconf.local and can be adapted to
+ your needs. The snapshot setup makes sure there is a sane setting but you
+ might want to change it if needed. A Makeconf.local file can also be placed
+ in the src/l4/ directory.
+
+ Then, go the build directory and type:
+   make image E=hello
+ to build the standard hello target.
+ You may specify any other entry with E=xxx from the modules.list file.
+
+
+Adding your own code
+====================
+
+ Your own code should be placed outside the snapshot directory. This allows
+ that the snapshot can be replaced with a more recent version without
+ needing to take care about your own files and directories.
+
+ Software components are usually put into so-called packages, and each
+ package has a structure like this:
+    pkgname/
+            doc/               - Documentation for the package
+            include/           - Public headers for the package
+            lib/               - Library code
+              src/
+            server/            - Program code
+              src/
+
+ This is just a recommended structure, it is not required to be like that.
+ What is built in defined in the Makefiles in each directory.
+
+ A typical Makefile looks like this:
+
+ PKGDIR  ?= .
+ L4DIR   ?= path/to/your/l4dir
+
+ # Statements specific to the used role
+
+ include $(L4DIR)/mk/<role>.mk
+
+ Role might be:
+   - subdir:  Descent to further subdirectories
+   - lib:     Build a library
+   - prog:    Build a program
+   - include: Process include files
+
+ The directory l4/mk/tmpl contains a template package directory layout
+ structure and shows how a package might look like. It also contains
+ examples on what to do in the Makefiles.
+
+ A very basic example might go like this:
+
+ $ mkdir /tmp/myfirstpkg
+ $ cd /tmp/myfirstpkg
+ $ editor Makefile
+ $ cat Makefile
+ PKGDIR  ?= .
+ L4DIR   ?= /path/to/snapshot/src/l4
+
+ TARGET          = myfirstprogram
+ SRC_C           = main.c
+
+ include $(L4DIR)/mk/prog.mk
+ $ editor main.c
+ $ cat main.c
+ #include <stdio.h>
+
+ int main(void)
+ {
+   printf("Hello!\n");
+   return 0;
+ }
+ $ make O=/path/to/snapshot/obj/l4/arm-rv
+ ...
+ $ ls /path/to/snapshot/obj/l4/arm-rv/bin/arm_rv/l4f/myfirstprogram
+ /path/to/snapshot/obj/l4/arm-rv/bin/arm_rv/l4f/myfirstprogram
+ $
+
+
+Tips and tricks
+===============
+
+ If you're just building for one build directory you can do the
+ following to avoid the O=... argument on every make call.
+
+ Put O=/path/to/the/build-dir into L4DIR/Makeconf.local
+
+ Also, you can just issue 'make' in the build directories directly.
+
+
+Setup for multiple packages
+===========================
+
+ Create a directory structure like this:
+
+  dir/
+  dir/pkg1
+  dir/pkg2
+  dir/pkg3
+
+ Put this Makefile into dir/Makefile:
+
+  PKGDIR  = .
+  L4DIR   ?= /path/to/your/l4dir/l4
+
+  TARGET = $(wildcard [a-zA-Z]*)
+
+  include $(L4DIR)/mk/subdir.mk
+
+ This will build all sub packages from within this directory. Make sure
+ to define L4DIR properly in every Makefile in the packages (or
+ alternatively, include a file which defines it, but this file has to be
+ absolute as well). 
+ In the package directories you can have the normal Makefiles as in
+ l4/pkg/pkgname.
+

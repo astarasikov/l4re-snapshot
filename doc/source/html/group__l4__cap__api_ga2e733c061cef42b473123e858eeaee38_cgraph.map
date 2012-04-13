@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__l4__cap__api.html#ga793a08eb5ae06280391626148aa4e446" title="reinterpret_cast for capabilities." alt="" coords="217,5,393,35"/>
+<area shape="rect" id="node5" href="$group__l4__ipc__err__api.html#ga4c287ff9f500479c73556785b4ca4807" title="Return error code of a system call return message tag." alt="" coords="271,59,340,88"/>
+<area shape="rect" id="node7" href="$group__l4__utcb__api.html#ga0e524ed43116ca4b9ec5b3c85e48d84f" title="Get the UTCB address." alt="" coords="444,59,511,88"/>
+</map>

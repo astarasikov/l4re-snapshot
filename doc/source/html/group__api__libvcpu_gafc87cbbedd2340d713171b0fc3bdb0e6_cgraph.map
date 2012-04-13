@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$group__api__libvcpu.html#gae09c2b8d93b8215b941eb3d7123fd4e8" title="Disable a vCPU for event delivery." alt="" coords="229,5,368,35"/>
+<area shape="rect" id="node7" href="$group__api__libvcpu.html#ga49ba2039744561b813df0bede3172d5c" title="Return the state flags of a vCPU." alt="" coords="248,59,349,88"/>
+<area shape="rect" id="node5" href="$group__l4sys__defines.html#ga4accdcabe8bddb4964f8986855e7c728" title="Memory barrier." alt="" coords="416,5,499,35"/>
+</map>

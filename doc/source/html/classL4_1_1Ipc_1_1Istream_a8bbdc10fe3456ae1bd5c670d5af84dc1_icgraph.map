@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classL4_1_1Ipc_1_1Iostream.html#ad4aa6f18b4ecd7938fc194b2c4498916" title="Do an IPC call using the message in the output stream and receiving to the input stream." alt="" coords="240,59,397,88"/>
+<area shape="rect" id="node15" href="$classL4_1_1Ipc_1_1Iostream.html#a38428e61e86208016e9653937da01f6d" title="Do an IPC reply and wait." alt="" coords="204,112,433,141"/>
+<area shape="rect" id="node17" href="$classL4_1_1Ipc_1_1Istream.html#aeefe739d106daa026a1d94ade34f1d97" title="Wait for an incoming message from any sender." alt="" coords="243,165,395,195"/>
+<area shape="rect" id="node5" href="$classL4Re_1_1Dataspace.html#a1dc3753a5a0cb425f74466bb79a52150" title="Allocate a range in the dataspace." alt="" coords="484,5,671,35"/>
+<area shape="rect" id="node7" href="$classL4Re_1_1Dataspace.html#a4989267bdb3c9086ce5cd45258c102c4" title="Get information on the data space." alt="" coords="497,59,657,88"/>
+<area shape="rect" id="node13" href="$classL4Re_1_1Dataspace.html#a4fa37ebc3ddac165e1491dcbda121d70" title="Get the physical addresses of a data space." alt="" coords="493,112,661,141"/>
+<area shape="rect" id="node9" href="$classL4Re_1_1Dataspace.html#a3e81d864adcc2c7a5ce251d6f47d76fa" title="Get flags of the data space." alt="" coords="720,32,888,61"/>
+<area shape="rect" id="node11" href="$classL4Re_1_1Dataspace.html#a4b5a994a93cb92028309bd901054f138" title="Get size of a data space." alt="" coords="723,85,885,115"/>
+</map>

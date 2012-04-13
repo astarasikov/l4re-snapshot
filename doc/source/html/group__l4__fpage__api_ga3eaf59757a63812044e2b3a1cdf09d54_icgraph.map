@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$classL4_1_1Cap__base.html#a73a3cf7ee3256374a12dfe213edca6f7" title="Returns flex&#45;page of the capability selector." alt="" coords="160,5,312,35"/>
+<area shape="rect" id="node7" href="$group__api__l4re__c__util.html#gac3708de5792dd2e377a6764fcfd16b03" title="Release a capability from a task (unmap)." alt="" coords="159,59,313,88"/>
+<area shape="rect" id="node5" href="$classL4_1_1Cap.html#aeaf250094cc2b090d7c7b10f88bbeb50" title="Move a capability to this cap slot." alt="" coords="363,5,576,35"/>
+</map>

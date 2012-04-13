@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$structL4_1_1Ipc__svr_1_1Ignore__errors.html" title="Mix in for LOOP_HOOKS to ignore IPC errors." alt="" coords="5,5,187,91"/>
+<area shape="rect" id="node4" href="$structL4_1_1Ipc__svr_1_1Default__timeout.html" title="Mix in for LOOP_HOOKS to use a 0 send and a infinite receive timeout." alt="" coords="211,5,411,91"/>
+<area shape="rect" id="node6" href="$structL4_1_1Ipc__svr_1_1Compound__reply.html" title="Mix in for LOOP_HOOKS to always use compound reply and wait." alt="" coords="435,5,640,91"/>
+<area shape="rect" id="node8" href="$structL4_1_1Ipc__svr_1_1Default__setup__wait.html" title="Mix in for LOOP_HOOKS for setup_wait no op." alt="" coords="664,5,883,91"/>
+</map>
