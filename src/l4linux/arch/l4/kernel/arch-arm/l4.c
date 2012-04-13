@@ -127,6 +127,7 @@ static struct clock_event_device timer0_clockevent = {
 	.irq            = 0,
 };
 
+#ifdef CONFIG_L4_PLAT_NONE
 int clk_enable(struct clk *clk)
 {
 	printk("%s %d\n", __func__, __LINE__);
@@ -139,6 +140,7 @@ void clk_disable(struct clk *clk)
 	printk("%s %d\n", __func__, __LINE__);
 }
 EXPORT_SYMBOL(clk_disable);
+#endif
 
 int dma_needs_bounce(struct device *d, dma_addr_t a, size_t s)
 {
@@ -206,6 +208,7 @@ static void l4x_timer_init(void)
 
 static void __init init_l4(void)
 {
+        l4x_arm_devices_early_init();
 	l4x_arm_devices_init();
 }
 

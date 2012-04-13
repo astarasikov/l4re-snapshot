@@ -39,8 +39,12 @@
 #include <linux/i2c.h>
 #include <linux/i2c/twl.h>
 
-#if defined(CONFIG_ARCH_OMAP2) || defined(CONFIG_ARCH_OMAP3)
+#if (defined(CONFIG_ARCH_OMAP2) || defined(CONFIG_ARCH_OMAP3)) && !defined(CONFIG_L4_PLAT_OVERO)
 #include <plat/cpu.h>
+#endif
+
+#ifdef CONFIG_L4_PLAT_OVERO
+#include <../kernel/arch-arm/plat-omap/include/plat/cpu.h>
 #endif
 
 /*

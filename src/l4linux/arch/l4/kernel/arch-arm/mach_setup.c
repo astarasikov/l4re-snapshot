@@ -222,6 +222,15 @@ static L4X_DEVICE_CB(dmamem_cb)
 		printk("Adding DMA memory to DMA allocator failed!\n");
 }
 
+
+#ifdef CONFIG_L4_PLAT_OVERO
+static void overoplatform_init()
+{
+        extern void overo_init(void);
+        overo_init();
+}
+#endif
+
 static void register_platform_callbacks(void)
 {
 	l4x_register_platform_device_callback("compactflash", realview_device_cb_pata);
@@ -259,12 +268,19 @@ void __init l4x_arm_devices_init(void)
 		struct l4x_platform_callback_elem *e;
 		L4XV_U(f);
 
-		list_for_each_entry(e, &platform_callbacks_head, list)
+#ifdef CONFIG_L4_PLAT_OVERO
+		if (!strcmp(dev.name,"plat"))
+                {
+		        overoplatform_init();
+		        break;
+                }
+#endif
+		list_for_each_entry(e, &platform_callbacks_head, list) {
 			if (!strcmp(e->name, dev.name)) {
 				e->cb(dh, rh, &dev, e);
 				break;
 			}
-
+		}
 		if (*dev.name == '\0')
 			strlcpy(dev.name, "unnamed", sizeof(dev.name));
 
@@ -277,4 +293,14 @@ void __init l4x_arm_devices_init(void)
 
 	dev_init_done = 1;
 	free_platform_callback_elems();
+}
+
+void __init l4x_arm_devices_early_init(void)
+{
+#ifdef CONFIG_L4_PLAT_OVERO
+        extern void overo_init_early(void);
+        overo_init_early();
+		        overoplatform_init();
+
+#endif
 }

@@ -31,6 +31,11 @@ choice
 	config L4_ARCH_ARM
 		select GENERIC_ALLOCATOR
 		select DMABOUNCE
+		select ARCH_HAS_OPP
+		select PM_OPP
+		select ARCH_OMAP3
+		#select OMAP_MUX
+		#select OMAP_PACKAGE_CBB
 		bool "ARM architecture"
 endchoice
 
@@ -389,7 +394,24 @@ config L4_SAMPLE_MODULE
 
 endmenu # advanced
 
+menu "Platform options"
+depends on L4_ARCH_ARM
+choice
+	prompt "Select platform"
+	config L4_PLAT_NONE
+		bool "none"
+	config L4_PLAT_OVERO
+	        select USB_GADGET_MUSB_HDRC
+#	        select GENERIC_IRQ_CHIP
+		bool "Gumstix Overo board"
+endchoice
+
+endmenu # Platform options
+
+
 endmenu # l4linux options
+
+comment ""
 
 config L4_USE_L4SHMC
 	bool

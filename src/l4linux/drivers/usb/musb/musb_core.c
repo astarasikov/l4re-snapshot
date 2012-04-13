@@ -1514,10 +1514,11 @@ static int __init musb_core_init(u16 musb_type, struct musb *musb)
 
 #if defined(CONFIG_SOC_OMAP2430) || defined(CONFIG_SOC_OMAP3430) || \
 	defined(CONFIG_ARCH_OMAP4) || defined(CONFIG_ARCH_U8500) || \
-	defined(CONFIG_ARCH_U5500)
+	defined(CONFIG_ARCH_U5500) || defined(CONFIG_L4_PLAT_OVERO)
 
 static irqreturn_t generic_interrupt(int irq, void *__hci)
 {
+
 	unsigned long	flags;
 	irqreturn_t	retval = IRQ_NONE;
 	struct musb	*musb = __hci;

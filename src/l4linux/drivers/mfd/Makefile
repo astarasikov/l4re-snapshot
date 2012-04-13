@@ -95,3 +95,7 @@ obj-$(CONFIG_MFD_PM8921_CORE) 	+= pm8921-core.o
 obj-$(CONFIG_MFD_PM8XXX_IRQ) 	+= pm8xxx-irq.o
 obj-$(CONFIG_MFD_TPS65910)	+= tps65910.o tps65910-irq.o
 obj-$(CONFIG_TPS65911_COMPARATOR)	+= tps65911-comparator.o
+
+ifeq ($(CONFIG_L4_PLAT_OVERO), y)
+KBUILD_CPPFLAGS += -Iarch/l4/kernel/arch-arm/plat-omap/include
+endif

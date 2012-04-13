@@ -41,6 +41,10 @@
 #include <linux/i2c-omap.h>
 #include <linux/pm_runtime.h>
 
+#ifdef CONFIG_L4_PLAT_OVERO
+#include <../kernel/arch-arm/plat-omap/include/plat/cpu.h>
+#endif
+
 /* I2C controller revisions */
 #define OMAP_I2C_REV_2			0x20
 
@@ -358,20 +362,24 @@ static int omap_i2c_init(struct omap_i2c_dev *dev)
 
 		/* SYSC register is cleared by the reset; rewrite it */
 		if (dev->rev == OMAP_I2C_REV_ON_2430) {
-
+#ifndef CONFIG_L4_PLAT_OVERO
 			omap_i2c_write_reg(dev, OMAP_I2C_SYSC_REG,
 					   SYSC_AUTOIDLE_MASK);
-
+#endif
 		} else if (dev->rev >= OMAP_I2C_REV_ON_3430) {
+#ifndef CONFIG_L4_PLAT_OVERO
 			dev->syscstate = SYSC_AUTOIDLE_MASK;
 			dev->syscstate |= SYSC_ENAWAKEUP_MASK;
 			dev->syscstate |= (SYSC_IDLEMODE_SMART <<
 			      __ffs(SYSC_SIDLEMODE_MASK));
 			dev->syscstate |= (SYSC_CLOCKACTIVITY_FCLK <<
 			      __ffs(SYSC_CLOCKACTIVITY_MASK));
-
+#else
+			dev->syscstate = (1<<3);
+#endif
 			omap_i2c_write_reg(dev, OMAP_I2C_SYSC_REG,
 							dev->syscstate);
+#ifndef CONFIG_L4_PLAT_OVERO
 			/*
 			 * Enabling all wakup sources to stop I2C freezing on
 			 * WFI instruction.
@@ -379,6 +387,7 @@ static int omap_i2c_init(struct omap_i2c_dev *dev)
 			 */
 			dev->westate = OMAP_I2C_WE_ALL;
 			omap_i2c_write_reg(dev, OMAP_I2C_WE_REG, dev->westate);
+#endif
 		}
 	}
 	omap_i2c_write_reg(dev, OMAP_I2C_CON_REG, 0);
@@ -584,7 +593,12 @@ static int omap_i2c_xfer_msg(struct i2c_adapter *adap,
 				"waiting for start condition to finish\n");
 				return -ETIMEDOUT;
 			}
+#ifndef CONFIG_L4_PLAT_OVERO
 			cpu_relax();
+#else
+			msleep(1);
+#endif
+
 		}
 
 		w |= OMAP_I2C_CON_STP;
@@ -1009,7 +1023,11 @@ omap_i2c_probe(struct platform_device *pdev)
 
 	if (pdata != NULL) {
 		speed = pdata->clkrate;
+#ifndef CONFIG_L4_PLAT_OVERO
 		dev->set_mpu_wkup_lat = pdata->set_mpu_wkup_lat;
+#else
+                dev->set_mpu_wkup_lat = NULL;
+#endif
 	} else {
 		speed = 100;	/* Default speed */
 		dev->set_mpu_wkup_lat = NULL;

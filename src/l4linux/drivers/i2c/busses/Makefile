@@ -84,3 +84,9 @@ obj-$(CONFIG_SCx200_ACB)	+= scx200_acb.o
 obj-$(CONFIG_SCx200_I2C)	+= scx200_i2c.o
 
 ccflags-$(CONFIG_I2C_DEBUG_BUS) := -DDEBUG
+
+ifeq ($(CONFIG_L4_PLAT_OVERO), y)
+ifeq ($(CONFIG_I2C_OMAP), y) 
+KBUILD_CPPFLAGS += -Iarch/l4/kernel/arch-arm/plat-omap/include
+endif
+endif

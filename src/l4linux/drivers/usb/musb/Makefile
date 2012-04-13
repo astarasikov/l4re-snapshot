@@ -46,3 +46,9 @@ ifneq ($(CONFIG_MUSB_PIO_ONLY),y)
     endif
   endif
 endif
+
+ifeq ($(CONFIG_L4_PLAT_OVERO), y)
+ifeq ($(CONFIG_I2C_OMAP), y) 
+KBUILD_CPPFLAGS += -Iarch/l4/kernel/arch-arm/plat-omap/include
+endif
+endif
