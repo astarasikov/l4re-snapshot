@@ -349,12 +349,8 @@ do_setup()
        obj/fiasco/arm-omap3evm/globalconfig.out
   fi
   if [ "$CONF_DO_ARM_OMAP3_BB" ]; then
-    cp src/kernel/fiasco/src/templates/globalconfig.out.arm-omap3evm \
+    cp src/kernel/fiasco/src/templates/globalconfig.out.arm-omap3beagle \
        obj/fiasco/arm-beagleboard/globalconfig.out
-    # beagleboard is nearly omap3evm so we do not have an own config
-    perl -n -i -e 'print unless /CONFIG_PF_OMAP3_/' obj/fiasco/arm-beagleboard/globalconfig.out
-    echo "# CONFIG_PF_OMAP3_EVM is not set" >> obj/fiasco/arm-beagleboard/globalconfig.out
-    echo "CONFIG_PF_OMAP3_BEAGLEBOARD=y"    >> obj/fiasco/arm-beagleboard/globalconfig.out
   fi
 
   # L4Re build dirs with default configs
@@ -381,12 +377,7 @@ do_setup()
     fi
   fi
   if [ "$CONF_DO_ARM_OMAP3_BB" ]; then
-    make -C src/l4 DROPSCONF_DEFCONFIG=mk/defconfig/config.arm-rv B=../../obj/l4/arm-beagleboard
-    perl -p -i -e 's/CONFIG_PLATFORM_ARM_rv=y/# CONFIG_PLATFORM_ARM_rv is not set/' obj/l4/arm-beagleboard/.kconfig
-    perl -p -i -e 's/# CONFIG_PLATFORM_ARM_beagleboard is not set/CONFIG_PLATFORM_ARM_beagleboard=y/' obj/l4/arm-beagleboard/.kconfig
-    perl -p -i -e 's/CONFIG_CPU_ARM_ARMV5TE=y/# CONFIG_CPU_ARM_ARMV5TE is not set /' obj/l4/arm-beagleboard/.kconfig
-    perl -p -i -e 's/# CONFIG_CPU_ARM_ARMV6 is not set/CONFIG_CPU_ARM_ARMV6=y/' obj/l4/arm-beagleboard/.kconfig
-    perl -p -i -e 's/CONFIG_CPU=.+/CONFIG_CPU="armv6"/' obj/l4/arm-beagleboard/.kconfig
+    make -C src/l4 DROPSCONF_DEFCONFIG=mk/defconfig/config.arm-beagle B=../../obj/l4/arm-beagleboard
     make -C obj/l4/arm-beagleboard oldconfig
     if [ -z "$ARM_L4_DIR_FOR_LX" ]; then
       ARM_L4_DIR_FOR_LX=obj/l4/arm-beagleboard

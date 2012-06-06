@@ -352,7 +352,7 @@ config RAM_BASE
 
 config RAM_SIZE_MB
 	int
-	default 128
+	default 256
 endif
 
 if PLATFORM_ARM_pandaboard
