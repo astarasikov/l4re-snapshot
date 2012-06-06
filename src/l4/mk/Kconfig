@@ -367,7 +367,7 @@ config RAM_BASE
 
 config RAM_SIZE_MB
 	int
-	default 512
+	default 1024
 endif
 
 if PLATFORM_ARM_tegra2
