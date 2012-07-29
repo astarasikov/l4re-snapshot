@@ -3,8 +3,8 @@
 
 //FIXME: use AES headers
 #define MAX_CRYPTO_SIZE (2048)
-#define MAX_IV_SIZE (256)
-#define MAX_KEY_SIZE (256)
+#define MAX_IV_SIZE (16)
+#define MAX_KEY_SIZE (16)
 
 struct ksys_crypto_request {
 	void __user *iv;
