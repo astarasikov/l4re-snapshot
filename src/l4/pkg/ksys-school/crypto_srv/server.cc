@@ -10,9 +10,9 @@
 #include <l4/re/c/mem_alloc.h>
 #include <l4/re/c/namespace.h>
 
-#include <string.h>
+#include <l4/libksys-crypto/ksys_crypto.h>
 
-#include "shared.h"
+#include <string.h>
 
 static void cs_encrypt_mbuf(L4::Ipc::Iostream &ios) {
 	unsigned long size = HC_BUF_SIZE;

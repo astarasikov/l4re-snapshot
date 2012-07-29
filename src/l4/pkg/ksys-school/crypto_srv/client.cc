@@ -6,18 +6,11 @@
 #include <l4/cxx/ipc_stream>
 #include <l4/sys/cache.h>
 
-#if 0
-#include <l4/re/c/util/cap_alloc.h>
-#include <l4/re/c/rm.h>
-#include <l4/re/c/mem_alloc.h>
-#include <l4/re/c/namespace.h>
-#endif
+#include <l4/libksys-crypto/ksys_crypto.h>
 
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
-#include "shared.h"
 
 static void hexdump(char *in, size_t count) {
 	//I am lazy, so just round to the nearest lower
@@ -40,179 +33,6 @@ static void hexdump(char *in, size_t count) {
 		printf("\n");
 	}
 }
-
-class ICrypto {
-public:
-	virtual int encrypt(char *data, char *result, unsigned long size) = 0;
-	virtual int decrypt(char *data, char *result, unsigned long size) = 0;
-	virtual ~ICrypto() {};
-};
-
-class MessageBufferCrypto : public ICrypto {
-public:
-	MessageBufferCrypto(L4::Cap<void> const &server,
-		char *iv, char *key) :
-		server(server), iv(iv), key(key) {}
-	
-	virtual int encrypt(char *data, char *result, unsigned long size) {
-		L4::Ipc::Iostream s(l4_utcb());
-
-		s << l4_umword_t(Opcode::CS_AES_ENCRYPT_MBUF);
-		s << L4::Ipc::buf_cp_out(key, KEY_SIZE);
-		s << L4::Ipc::buf_cp_out(iv, IV_SIZE);
-		s << L4::Ipc::buf_cp_out(data, size);
-
-		l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
-		if (l4_ipc_error(res, l4_utcb()))
-			return 1;
-
-		L4::Ipc::Buf_cp_in<char> out_buf(result, size);
-		s >> out_buf;
-		return 0;
-	}
-
-	virtual int decrypt(char *data, char *result, unsigned long size) {
-		L4::Ipc::Iostream s(l4_utcb());
-
-		s << l4_umword_t(Opcode::CS_AES_DECRYPT_MBUF);
-		s << L4::Ipc::buf_cp_out(key, KEY_SIZE);
-		s << L4::Ipc::buf_cp_out(iv, IV_SIZE);
-		s << L4::Ipc::buf_cp_out(data, size);
-
-		l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
-		if (l4_ipc_error(res, l4_utcb()))
-			return 1;
-
-		L4::Ipc::Buf_cp_in<char> out_buf(result, size);
-		s >> out_buf;
-
-		return 0;
-	}
-protected:
-	L4::Cap<void> const &server;
-	char *iv;
-	char *key;
-};
-
-class DataspaceBufferCrypto : public ICrypto {
-public:
-	DataspaceBufferCrypto(L4::Cap<void> const &server,
-		char *iv, char *key) :
-		server(server), iv(iv), key(key) {}
-	
-	virtual int encrypt(char *data, char *result, unsigned long size) {
-		char *addr;
-		int rc = 0;
-		L4::Cap<L4Re::Dataspace> ds;
-		if (getShm(size, &addr, ds)) {
-			printf("failed to get SHM region\n");
-			return -1;
-		}
-		
-		memcpy(addr, data, size);
-		
-		L4::Ipc::Iostream s(l4_utcb());
-		s << l4_umword_t(Opcode::CS_AES_ENCRYPT_DS);
-		s << L4::Ipc::buf_cp_out(key, KEY_SIZE);
-		s << L4::Ipc::buf_cp_out(iv, IV_SIZE);
-		s << size;
-		
-		l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
-		if ((rc = l4_ipc_error(res, l4_utcb()))) {
-			puts("failed to call CS_AES_ENCRYPT_DS");
-		}
-
-		memcpy(result, addr + size, size);
-
-		freeShm(addr, ds);
-		return rc;
-	}
-	
-	virtual int decrypt(char *data, char *result, unsigned long size) {
-		char *addr;
-		int rc = 0;
-		L4::Cap<L4Re::Dataspace> ds;
-		if (getShm(size, &addr, ds)) {
-			printf("failed to get SHM region\n");
-			return -1;
-		}
-		
-		memcpy(addr, data, size);
-		
-		L4::Ipc::Iostream s(l4_utcb());
-		s << l4_umword_t(Opcode::CS_AES_DECRYPT_DS);
-		s << L4::Ipc::buf_cp_out(key, KEY_SIZE);
-		s << L4::Ipc::buf_cp_out(iv, IV_SIZE);
-		s << size;
-		
-		l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
-		if ((rc = l4_ipc_error(res, l4_utcb()))) {
-			puts("failed to call CS_AES_DECRYPT_DS");
-		}
-
-		//crypto_cbc_decrypt seems to corrupt memory
-		//when working in-place. gotta check later
-		memcpy(result, addr + size, size);
-
-		freeShm(addr, ds);
-		return rc;
-	}
-protected:
-	int freeShm(char *addr, L4::Cap<L4Re::Dataspace> &ds) {
-		int err = L4Re::Env::env()->rm()->detach(addr, 0);
-		if (err) {
-			printf("failed to unmap memory region: %d\n", err);
-			return err;
-		}
-		L4Re::Util::cap_alloc.free(ds, L4Re::This_task);
-		return 0;
-	}
-
-	int getShm(unsigned long size, char **addr, L4::Cap<L4Re::Dataspace> &ds) {
-		int rc = -1;
-		int err = 0;
-		l4_msgtag_t res;
-		ds = L4Re::Util::cap_alloc.alloc<L4Re::Dataspace>();
-		if (!ds.is_valid())
-		{
-			printf("Could not get capability slot!\n");
-			return -1;
-		}
-
-		L4::Ipc::Iostream s(l4_utcb());
-		s << l4_umword_t(Opcode::CS_GET_SHM);
-		s << l4_umword_t(size << 1);	
-		s << L4::Ipc::Small_buf(ds);
-		res = s.call(server.cap(), Protocol::Crypto_AES);
-		if (l4_ipc_error(res, l4_utcb())) {
-			goto fail_ipc_call;
-		}
-	  
-		rc = L4Re::Env::env()->rm()->attach(addr, ds->size(),
-											   L4Re::Rm::Search_addr, ds);
-		if (rc < 0) {
-			printf("Error attaching data space: %s\n", l4sys_errtostr(rc));
-			goto fail_rm_attach;
-		}
-		//printf("got shared dataspace @ %p\n", *addr);
-		return 0;
-
-	fail_rm_attach:
-		err = L4Re::Env::env()->rm()->detach(*addr, 0);
-		if (err) {
-			puts("failed to unmap memory region");
-			rc = err;
-		}
-	fail_ipc_call:
-		L4Re::Util::cap_alloc.free(ds, L4Re::This_task);
-		return rc;
-	}
-
-	L4::Cap<void> const &server;
-	char *iv;
-	char *key;
-};
-
 
 #define MSG "hello world 12345!"
 
@@ -262,8 +82,8 @@ int main()
 		return 1;
 	}
 
-	test_crypto<MessageBufferCrypto>(server);
-	test_crypto<DataspaceBufferCrypto>(server);
+	test_crypto<Ksys::MessageBufferCrypto>(server);
+	test_crypto<Ksys::DataspaceBufferCrypto>(server);
 
 	return 0;
 }

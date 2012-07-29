@@ -1,2 +1,2 @@
-requires: crtn l4re l4re_c
+requires: crtn l4re l4re_c libksys-crypto
 Maintainer: alexander.tarasikov@gmail.com

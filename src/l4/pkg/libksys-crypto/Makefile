@@ -1,6 +1,4 @@
-PKGDIR	?= .
+PKGDIR	= .
 L4DIR	?= $(PKGDIR)/../..
-
-TARGET = crypto_srv ex1_hello
 
 include $(L4DIR)/mk/subdir.mk

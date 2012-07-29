@@ -1,0 +1,3 @@
+provides: libksys-crypto
+requires: crtn l4re l4re_c
+Maintainer: alexander.tarasikov@gmail.com
