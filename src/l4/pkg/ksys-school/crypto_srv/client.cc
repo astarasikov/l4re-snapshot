@@ -48,7 +48,7 @@ static int test_crypto(L4::Cap<void> &server) {
 	memset(raw, 0, HC_BUF_SIZE);
 	memcpy(raw, MSG, sizeof(MSG));
 
-	T crypto(server, iv, key);
+	T crypto(server, iv, IV_SIZE, key, KEY_SIZE);
 	char const* Tname = typeid(T).name();
 
 	printf("calling %s for class %s\n", __func__, Tname);

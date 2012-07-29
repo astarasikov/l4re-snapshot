@@ -12,12 +12,14 @@
 #include <string.h>
 #include <ctype.h>
 
-int Ksys::MessageBufferCrypto::encrypt(char *data, char *result, unsigned long size) {
+int Ksys::MessageBufferCrypto::encrypt(char *data,
+	char *result, unsigned long size)
+{
 	L4::Ipc::Iostream s(l4_utcb());
 
 	s << l4_umword_t(Opcode::CS_AES_ENCRYPT_MBUF);
-	s << L4::Ipc::buf_cp_out(key, KEY_SIZE);
-	s << L4::Ipc::buf_cp_out(iv, IV_SIZE);
+	s << L4::Ipc::buf_cp_out(key, key_size);
+	s << L4::Ipc::buf_cp_out(iv, iv_size);
 	s << L4::Ipc::buf_cp_out(data, size);
 
 	l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
@@ -29,12 +31,14 @@ int Ksys::MessageBufferCrypto::encrypt(char *data, char *result, unsigned long s
 	return 0;
 }
 
-int Ksys::MessageBufferCrypto::decrypt(char *data, char *result, unsigned long size) {
+int Ksys::MessageBufferCrypto::decrypt(char *data,
+	char *result, unsigned long size)
+{
 		L4::Ipc::Iostream s(l4_utcb());
 
 		s << l4_umword_t(Opcode::CS_AES_DECRYPT_MBUF);
-		s << L4::Ipc::buf_cp_out(key, KEY_SIZE);
-		s << L4::Ipc::buf_cp_out(iv, IV_SIZE);
+		s << L4::Ipc::buf_cp_out(key, key_size);
+		s << L4::Ipc::buf_cp_out(iv, iv_size);
 		s << L4::Ipc::buf_cp_out(data, size);
 
 		l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
@@ -47,7 +51,9 @@ int Ksys::MessageBufferCrypto::decrypt(char *data, char *result, unsigned long s
 	return 0;
 }
 
-int Ksys::DataspaceBufferCrypto::encrypt(char *data, char *result, unsigned long size) {
+int Ksys::DataspaceBufferCrypto::encrypt(char *data,
+	char *result, unsigned long size)
+{
 	char *addr;
 	int rc = 0;
 	L4::Cap<L4Re::Dataspace> ds;
@@ -60,8 +66,8 @@ int Ksys::DataspaceBufferCrypto::encrypt(char *data, char *result, unsigned long
 	
 	L4::Ipc::Iostream s(l4_utcb());
 	s << l4_umword_t(Opcode::CS_AES_ENCRYPT_DS);
-	s << L4::Ipc::buf_cp_out(key, KEY_SIZE);
-	s << L4::Ipc::buf_cp_out(iv, IV_SIZE);
+	s << L4::Ipc::buf_cp_out(key, key_size);
+	s << L4::Ipc::buf_cp_out(iv, iv_size);
 	s << size;
 	
 	l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
@@ -75,7 +81,9 @@ int Ksys::DataspaceBufferCrypto::encrypt(char *data, char *result, unsigned long
 	return rc;
 }
 	
-int Ksys::DataspaceBufferCrypto::decrypt(char *data, char *result, unsigned long size) {
+int Ksys::DataspaceBufferCrypto::decrypt(char *data,
+	char *result, unsigned long size)
+{
 	char *addr;
 	int rc = 0;
 	L4::Cap<L4Re::Dataspace> ds;
@@ -88,8 +96,8 @@ int Ksys::DataspaceBufferCrypto::decrypt(char *data, char *result, unsigned long
 	
 	L4::Ipc::Iostream s(l4_utcb());
 	s << l4_umword_t(Opcode::CS_AES_DECRYPT_DS);
-	s << L4::Ipc::buf_cp_out(key, KEY_SIZE);
-	s << L4::Ipc::buf_cp_out(iv, IV_SIZE);
+	s << L4::Ipc::buf_cp_out(key, key_size);
+	s << L4::Ipc::buf_cp_out(iv, iv_size);
 	s << size;
 	
 	l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
@@ -105,7 +113,9 @@ int Ksys::DataspaceBufferCrypto::decrypt(char *data, char *result, unsigned long
 	return rc;
 }
 	
-int Ksys::DataspaceBufferCrypto::freeShm(char *addr, L4::Cap<L4Re::Dataspace> &ds) {
+int Ksys::DataspaceBufferCrypto::freeShm(char *addr,
+	L4::Cap<L4Re::Dataspace> &ds)
+{
 		int err = L4Re::Env::env()->rm()->detach(addr, 0);
 		if (err) {
 			printf("failed to unmap memory region: %d\n", err);
@@ -122,8 +132,7 @@ int Ksys::DataspaceBufferCrypto::getShm(unsigned long size,
 	int err = 0;
 	l4_msgtag_t res;
 	ds = L4Re::Util::cap_alloc.alloc<L4Re::Dataspace>();
-	if (!ds.is_valid())
-	{
+	if (!ds.is_valid()) {
 		printf("Could not get capability slot!\n");
 		return -1;
 	}
@@ -138,7 +147,7 @@ int Ksys::DataspaceBufferCrypto::getShm(unsigned long size,
 	}
   
 	rc = L4Re::Env::env()->rm()->attach(addr, ds->size(),
-										   L4Re::Rm::Search_addr, ds);
+		L4Re::Rm::Search_addr, ds);
 	if (rc < 0) {
 		printf("Error attaching data space: %s\n", l4sys_errtostr(rc));
 		goto fail_rm_attach;
@@ -155,4 +164,31 @@ fail_rm_attach:
 fail_ipc_call:
 	L4Re::Util::cap_alloc.free(ds, L4Re::This_task);
 	return rc;
+}
+
+extern "C" {
+
+int ksys_aes_encrypt(
+	l4_cap_idx_t server_cap,
+	char *iv, unsigned long iv_size,
+	char *key, unsigned long key_size,
+	char *data, char *out, unsigned long size
+)
+{
+	L4::Cap<void> cap(server_cap);
+	Ksys::DataspaceBufferCrypto crypto(cap, iv, iv_size, key, key_size);
+	return crypto.encrypt(data, out, size);
+}
+
+int ksys_aes_decrypt(
+	l4_cap_idx_t server_cap,
+	char *iv, unsigned long iv_size,
+	char *key, unsigned long key_size,
+	char *data, char *out, unsigned long size)
+{
+	L4::Cap<void> cap(server_cap);
+	Ksys::DataspaceBufferCrypto crypto(cap, iv, iv_size, key, key_size);
+	return crypto.decrypt(data, out, size);
+}
+
 }

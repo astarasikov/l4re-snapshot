@@ -4,8 +4,9 @@
 #include <l4/crypto/aes.h>
 #include <l4/crypto/cbc.h>
 
+#include "c_compat.h"
+
 #define HC_BUF_SIZE 64
-#define CS_CAP_NAME "crypto_srv"
 
 #define KEY_SIZE ((unsigned long)AES128_KEY_SIZE)
 #define IV_SIZE ((unsigned long)16)
@@ -41,22 +42,29 @@ public:
 class MessageBufferCrypto : public ICrypto {
 public:
 	MessageBufferCrypto(L4::Cap<void> const &server,
-		char *iv, char *key) :
-		server(server), iv(iv), key(key) {}
+		char *iv, unsigned long iv_size,
+		char *key, unsigned long key_size) :
+		server(server), iv(iv), iv_size(iv_size),
+		key(key), key_size(key_size) {}
 	
 	virtual int encrypt(char *data, char *result, unsigned long size);
 	virtual int decrypt(char *data, char *result, unsigned long size);
 protected:
 	L4::Cap<void> const &server;
 	char *iv;
+	unsigned long iv_size;
+
 	char *key;
+	unsigned long key_size;
 };
 
 class DataspaceBufferCrypto : public ICrypto {
 public:
 	DataspaceBufferCrypto(L4::Cap<void> const &server,
-		char *iv, char *key) :
-		server(server), iv(iv), key(key) {}
+		char *iv, unsigned long iv_size,
+		char *key, unsigned long key_size) :
+		server(server), iv(iv), iv_size(iv_size),
+		key(key), key_size(key_size) {}
 	
 	virtual int encrypt(char *data, char *result, unsigned long size);
 	virtual int decrypt(char *data, char *result, unsigned long size);
@@ -67,7 +75,10 @@ protected:
 
 	L4::Cap<void> const &server;
 	char *iv;
+	unsigned long iv_size;
+	
 	char *key;
+	unsigned long key_size;
 };
 
 } //namespace Ksys
