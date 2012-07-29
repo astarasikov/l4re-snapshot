@@ -38,7 +38,6 @@
 #  module-group oftenneedthose
 #
 # Set defaults:
-# - default-kernel: set default kernel including arguments
 # - default-sigma0: set default sigma0 including arguments
 # - default-roottask: set default roottask including arguments
 
@@ -55,6 +54,36 @@ module l4re
 module ned
 module hello.cfg
 module hello
+
+entry my-ksys-ex1-hello
+roottask moe --init=rom/ex1_hello
+module l4re
+module ex1_hello
+
+entry my-ksys-ex2-crypto
+kernel fiasco -serial_esc
+roottask moe rom/crypto_srv.cfg
+module l4re
+module ned
+module crypto_srv-client
+module crypto_srv-server
+module crypto_srv.cfg
+
+entry my-ksys-ex3-l4linux
+kernel fiasco
+# -serial_esc
+roottask moe rom/l4lx-ksys-crypto.cfg
+module l4re
+module ned
+module l4lx-ksys-crypto.cfg
+module io
+module fb-drv
+module mag
+module x86-legacy.devs
+module l4lx-x86.io
+module vmlinuz
+module ramdisk-x86.rd
+module crypto_srv-server
 
 entry hello-shared
 kernel fiasco -serial_esc

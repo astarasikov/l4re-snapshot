@@ -208,7 +208,7 @@ done:
 static int crypto_release(struct inode *inode, struct file *file) {
 	struct crypto_state *state =
 		container_of(&file,	struct crypto_state, file);
-	mutex_destroy(&state->mutex);
+	//mutex_destroy(&state->mutex);
 	kfree(state->iv);
 	kfree(state->key);
 	kfree(state->buffer);
@@ -233,7 +233,7 @@ static int init_l4_server(void) {
 	l4re_namespace_t crypto_ns = L4_INVALID_CAP;
 
 	crypto_ns = l4re_get_env_cap(CS_CAP_NAME);
-	if (crypto_ns == L4_INVALID_CAP) {
+	if (l4_is_invalid_cap(crypto_ns)) {
 		pr_err(LOG_TAG "%s: failed to get server capability\n", __func__);
 		return -ENODEV;
 	}
