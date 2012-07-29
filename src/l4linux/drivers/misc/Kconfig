@@ -490,6 +490,18 @@ config PCH_PHUB
 	  To compile this driver as a module, choose M here: the module will
 	  be called pch_phub.
 
+config KSYS_SS_L4_CRYPTO
+	depends on L4
+	tristate "Ksys Labs L4Linux Crypto Interface"
+	help
+	  Say 'Y' here to build the linux interface driver
+	  for the crypto server. (ksyslabs summer school 2012
+	  assignment 3)
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called ksys_ss_l4_crypto.
+
+
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
 source "drivers/misc/cb710/Kconfig"

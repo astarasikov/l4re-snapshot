@@ -273,6 +273,7 @@ L4LX_E_L-$(CONFIG_L4_IRQ_OMEGA0)   += omega0
 L4LX_E_L-$(CONFIG_L4_PDSPBLK_DRV)  += pers_dsp
 L4LX_E_L-$(CONFIG_L4_TCG_STPM)     += stpm-client
 L4LX_E_L-$(CONFIG_L4_FERRET)       += ferret
+L4LX_E_L-$(CONFIG_KSYS_SS_L4_CRYPTO) += libksys-crypto
 
 L4INC		= -I$(L4OBJ)/include/$(L4_MK_ARCH)/$(L4_MK_API) \
 		  -I$(L4OBJ)/include/$(L4_MK_ARCH) \
