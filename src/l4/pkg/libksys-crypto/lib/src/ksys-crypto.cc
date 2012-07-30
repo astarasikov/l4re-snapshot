@@ -23,8 +23,12 @@ int Ksys::MessageBufferCrypto::encrypt(char *data,
 	s << L4::Ipc::buf_cp_out(data, size);
 
 	l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
-	if (l4_ipc_error(res, l4_utcb()))
+	int err = l4_error(res);
+	if (err < 0) {
+		printf("IPC call failed %x: %s\n",
+			err, l4sys_errtostr(err));
 		return 1;
+	}
 
 	L4::Ipc::Buf_cp_in<char> out_buf(result, size);
 	s >> out_buf;
@@ -34,16 +38,20 @@ int Ksys::MessageBufferCrypto::encrypt(char *data,
 int Ksys::MessageBufferCrypto::decrypt(char *data,
 	char *result, unsigned long size)
 {
-		L4::Ipc::Iostream s(l4_utcb());
+	L4::Ipc::Iostream s(l4_utcb());
 
-		s << l4_umword_t(Opcode::CS_AES_DECRYPT_MBUF);
-		s << L4::Ipc::buf_cp_out(key, key_size);
-		s << L4::Ipc::buf_cp_out(iv, iv_size);
-		s << L4::Ipc::buf_cp_out(data, size);
+	s << l4_umword_t(Opcode::CS_AES_DECRYPT_MBUF);
+	s << L4::Ipc::buf_cp_out(key, key_size);
+	s << L4::Ipc::buf_cp_out(iv, iv_size);
+	s << L4::Ipc::buf_cp_out(data, size);
 
-		l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
-		if (l4_ipc_error(res, l4_utcb()))
-			return 1;
+	l4_msgtag_t res = s.call(server.cap(), Protocol::Crypto_AES);
+	int err = l4_error(res);
+	if (err < 0) {
+		printf("IPC call failed %x: %s\n",
+			err, l4sys_errtostr(err));
+		return 1;
+	}
 
 	L4::Ipc::Buf_cp_in<char> out_buf(result, size);
 	s >> out_buf;
@@ -142,7 +150,10 @@ int Ksys::DataspaceBufferCrypto::getShm(unsigned long size,
 	s << l4_umword_t(size << 1);	
 	s << L4::Ipc::Small_buf(ds);
 	res = s.call(server.cap(), Protocol::Crypto_AES);
-	if (l4_ipc_error(res, l4_utcb())) {
+	err = l4_error(res);
+	if (err < 0) {
+		printf("IPC call failed %x: %s\n",
+			err, l4sys_errtostr(err));
 		goto fail_ipc_call;
 	}
   
@@ -168,6 +179,9 @@ fail_ipc_call:
 
 extern "C" {
 
+#define USE_CXX_CAP_GET 1
+#define USE_MBUF_CRYPTO 0
+
 int ksys_aes_encrypt(
 	l4_cap_idx_t server_cap,
 	char *iv, unsigned long iv_size,
@@ -175,8 +189,23 @@ int ksys_aes_encrypt(
 	char *data, char *out, unsigned long size
 )
 {
+#if 1
+	L4::Cap <void> cap =
+	    L4Re::Env::env()->get_cap <void>(CS_CAP_NAME);
+	if (!cap.is_valid()) {
+		printf("Could not get crypto server capability!\n");
+		return 1;
+	}
+#else
 	L4::Cap<void> cap(server_cap);
+#endif
+
+#if USE_MBUF_CRYPTO
+	Ksys::MessageBufferCrypto crypto(cap, iv, iv_size, key, key_size);
+#else
 	Ksys::DataspaceBufferCrypto crypto(cap, iv, iv_size, key, key_size);
+#endif
+	
 	return crypto.encrypt(data, out, size);
 }
 
@@ -186,8 +215,22 @@ int ksys_aes_decrypt(
 	char *key, unsigned long key_size,
 	char *data, char *out, unsigned long size)
 {
+#if 1
+	L4::Cap <void> cap =
+	    L4Re::Env::env()->get_cap <void>(CS_CAP_NAME);
+	if (!cap.is_valid()) {
+		printf("Could not get crypto server capability!\n");
+		return 1;
+	}
+#else
 	L4::Cap<void> cap(server_cap);
+#endif
+
+#if USE_MBUF_CRYPTO
+	Ksys::MessageBufferCrypto crypto(cap, iv, iv_size, key, key_size);
+#else
 	Ksys::DataspaceBufferCrypto crypto(cap, iv, iv_size, key, key_size);
+#endif
 	return crypto.decrypt(data, out, size);
 }
 
