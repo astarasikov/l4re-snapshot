@@ -10,7 +10,6 @@
  */
 #include <linux/kernel.h>
 #include <linux/types.h>
-#include <linux/mutex.h>
 #include <linux/slab.h>
 #include <linux/fs.h>
 #include <linux/miscdevice.h>
@@ -36,21 +35,16 @@ struct crypto_state {
 	void *iv;
 	void *key;
 	void *buffer;
-	struct mutex mutex;
-	struct file *file;
 };
 
 static l4_cap_idx_t crypto_server_cap = L4_INVALID_CAP;
 
-static int crypto_open(struct inode *inode, struct file *file) {
-	struct crypto_state *state= 0;
-	
-	state = kzalloc(sizeof(struct crypto_state), GFP_KERNEL);
+static int init_crypto_state(struct crypto_state *state) {
 	if (!state) {
-		pr_err(LOG_TAG "out of memory\n");
-		goto fail;
+		pr_err(LOG_TAG "state is NULL\n");
+		return -ENOMEM;
 	}
-	
+
 	state->iv = kzalloc(MAX_IV_SIZE, GFP_KERNEL);
 	if (!state->iv) {
 		pr_err(LOG_TAG "no memory for the IV\n");
@@ -69,28 +63,43 @@ static int crypto_open(struct inode *inode, struct file *file) {
 		goto fail;
 	}
 
-	state->file = file;
+	return 0;
+fail:
+	if (state->iv) {
+		kfree(state->iv);
+	}
 
-	mutex_init(&state->mutex);
+	if (state->key) {
+		kfree(state->key);
+	}
+
+	if (state->buffer) {
+		kfree(state->buffer);
+	}
+	return -1;
+}
+
+static int crypto_open(struct inode *inode, struct file *file) {
+	struct crypto_state *state= 0;
+	
+	state = kzalloc(sizeof(struct crypto_state), GFP_KERNEL);
+	if (!state) {
+		pr_err(LOG_TAG "out of memory\n");
+		goto fail;
+	}
+	if (init_crypto_state(state) < 0) {
+		pr_err(LOG_TAG "failed to init crypto state\n");
+		goto fail;
+	}
+	
+	file->private_data = state;
 
 	return 0;
-
 fail:
 	if (state) {
-		if (state->iv) {
-			kfree(state->iv);
-		}
-
-		if (state->key) {
-			kfree(state->key);
-		}
-
-		if (state->buffer) {
-			kfree(state->buffer);
-		}
-
 		kfree(state);
 	}
+
 	return -1;
 }
 
@@ -102,12 +111,9 @@ static long crypto_ioctl(struct file *file,
 	unsigned long iv_size = 0;
 	unsigned long key_size = 0;
 
-	struct crypto_state *state =
-		container_of(&file,	struct crypto_state, file);
-	
+	struct crypto_state *state = (struct crypto_state*)file->private_data;
 	struct ksys_crypto_request req = {};
 
-	mutex_lock(&state->mutex);
 	switch (code) {
 		case KSYS_CRYPTO_AES_ENC:
 		case KSYS_CRYPTO_AES_DEC:
@@ -145,6 +151,13 @@ static long crypto_ioctl(struct file *file,
 		goto done;
 	}
 
+	if (!req.iv || !req.key || !req.data
+		|| !iv_size || !key_size || !size) {
+		pr_err(LOG_TAG "IV/Key/data is null or size is zero\n");
+		rc = -EINVAL;
+		goto done;
+	}
+
 	if (copy_from_user(state->iv, req.iv, iv_size)) {
 		pr_err(LOG_TAG "failed to copy the IV from userspace\n");
 		rc = -EFAULT;
@@ -162,36 +175,33 @@ static long crypto_ioctl(struct file *file,
 		rc = -EFAULT;
 		goto done;
 	}
-	
+
+	L4XV_V(f);
+	L4XV_L(f);
 	switch (code) {
 		case KSYS_CRYPTO_AES_ENC:
-			if (ksys_aes_encrypt
-				(
-					crypto_server_cap,
-					state->iv, iv_size,
-					state->key, key_size,
-					state->buffer, state->buffer, size
-				))
-			{
-				pr_err(LOG_TAG "failed to encrypt the data\n");
-				rc = -EFAULT;
-				goto done;
-			}
+			rc = ksys_aes_encrypt (
+				crypto_server_cap,
+				state->iv, iv_size,
+				state->key, key_size,
+				state->buffer, state->buffer, size
+			);
 			break;
 		case KSYS_CRYPTO_AES_DEC:
-			if (ksys_aes_decrypt
-				(
-					crypto_server_cap,
-					state->iv, iv_size,
-					state->key, key_size,
-					state->buffer, state->buffer, size
-				))
-			{
-				pr_err(LOG_TAG "failed to decrypt the data\n");
-				rc = -EFAULT;
-				goto done;
-			}
+			rc = ksys_aes_decrypt (
+				crypto_server_cap,
+				state->iv, iv_size,
+				state->key, key_size,
+				state->buffer, state->buffer, size
+			);
 			break;
+	}
+	L4XV_U(f);
+
+	if (rc < 0) {
+		pr_err(LOG_TAG "failed to call into L4\n");
+		rc = -EFAULT;
+		goto done;
 	}
 
 	if (copy_to_user(req.data, state->buffer, size)) {
@@ -201,14 +211,11 @@ static long crypto_ioctl(struct file *file,
 	}
 
 done:
-	mutex_unlock(&state->mutex);
 	return rc;
 }
 
 static int crypto_release(struct inode *inode, struct file *file) {
-	struct crypto_state *state =
-		container_of(&file,	struct crypto_state, file);
-	//mutex_destroy(&state->mutex);
+	struct crypto_state *state = (struct crypto_state*)file->private_data;
 	kfree(state->iv);
 	kfree(state->key);
 	kfree(state->buffer);
