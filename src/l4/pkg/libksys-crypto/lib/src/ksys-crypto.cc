@@ -178,19 +178,17 @@ fail_ipc_call:
 	return rc;
 }
 
-extern "C" {
-
-#define USE_CXX_CAP_GET 1
+#define USE_CXX_CAP_GET 0 
 #define USE_MBUF_CRYPTO 0
 
-int ksys_aes_encrypt(
+int L4_CV ksys_aes_encrypt(
 	l4_cap_idx_t server_cap,
-	char *iv, unsigned long iv_size,
-	char *key, unsigned long key_size,
-	char *data, char *out, unsigned long size
+	char *iv, unsigned iv_size,
+	char *key, unsigned key_size,
+	char *data, char *out, unsigned size
 )
 {
-#if 1
+#if USE_CXX_CAP_GET
 	L4::Cap <void> cap =
 	    L4Re::Env::env()->get_cap <void>(CS_CAP_NAME);
 	if (!cap.is_valid()) {
@@ -210,13 +208,13 @@ int ksys_aes_encrypt(
 	return crypto.encrypt(data, out, size);
 }
 
-int ksys_aes_decrypt(
+int L4_CV ksys_aes_decrypt(
 	l4_cap_idx_t server_cap,
-	char *iv, unsigned long iv_size,
-	char *key, unsigned long key_size,
-	char *data, char *out, unsigned long size)
+	char *iv, unsigned iv_size,
+	char *key, unsigned key_size,
+	char *data, char *out, unsigned size)
 {
-#if 1
+#if USE_CXX_CAP_GET
 	L4::Cap <void> cap =
 	    L4Re::Env::env()->get_cap <void>(CS_CAP_NAME);
 	if (!cap.is_valid()) {
@@ -233,6 +231,4 @@ int ksys_aes_decrypt(
 	Ksys::DataspaceBufferCrypto crypto(cap, iv, iv_size, key, key_size);
 #endif
 	return crypto.decrypt(data, out, size);
-}
-
 }
