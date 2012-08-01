@@ -125,10 +125,14 @@ static int alloc_ds(size_t size, L4::Cap<L4Re::Dataspace> *ds, char **shm) {
 		goto err_ma;
 	}
 
-	if (L4Re::Env::env()->rm()->attach(shm, (*ds)->size(),
-		L4Re::Rm::Search_addr, *ds))
+	int err;
+	if ((err = L4Re::Env::env()->rm()->attach(shm, size,
+		L4Re::Rm::Search_addr, *ds)))
 	{
-		puts("failed to attach DS memory");
+		printf("failed to attach DS memory: %s %x %x\n",
+			l4sys_errtostr(err),
+			*shm,
+			(*ds)->size());
 		return L4_ENOMEM;
 	}
 	return 0;

@@ -70,6 +70,7 @@ static int test_crypto(L4::Cap<void> &server) {
 	}
 	puts("Decrypted data");
 	hexdump(raw, HC_BUF_SIZE);
+	return 0;
 }
 
 int main()

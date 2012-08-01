@@ -62,16 +62,17 @@ int Ksys::MessageBufferCrypto::decrypt(char *data,
 int Ksys::DataspaceBufferCrypto::encrypt(char *data,
 	char *result, unsigned long size)
 {
-	char *addr;
+	char *addr = 0;
 	int rc = 0;
+
 	L4::Cap<L4Re::Dataspace> ds;
 	if (getShm(size, &addr, ds)) {
 		printf("failed to get SHM region\n");
 		return -1;
 	}
-	
+
 	memcpy(addr, data, size);
-	
+
 	L4::Ipc::Iostream s(l4_utcb());
 	s << l4_umword_t(Opcode::CS_AES_ENCRYPT_DS);
 	s << L4::Ipc::buf_cp_out(key, key_size);
@@ -92,7 +93,7 @@ int Ksys::DataspaceBufferCrypto::encrypt(char *data,
 int Ksys::DataspaceBufferCrypto::decrypt(char *data,
 	char *result, unsigned long size)
 {
-	char *addr;
+	char *addr = 0;
 	int rc = 0;
 	L4::Cap<L4Re::Dataspace> ds;
 	if (getShm(size, &addr, ds)) {
@@ -150,14 +151,14 @@ int Ksys::DataspaceBufferCrypto::getShm(unsigned long size,
 	s << l4_umword_t(size << 1);	
 	s << L4::Ipc::Small_buf(ds);
 	res = s.call(server.cap(), Protocol::Crypto_AES);
-	err = l4_error(res);
+	err = l4_ipc_error(res, l4_utcb());
 	if (err < 0) {
 		printf("IPC call failed %x: %s\n",
 			err, l4sys_errtostr(err));
 		goto fail_ipc_call;
 	}
   
-	rc = L4Re::Env::env()->rm()->attach(addr, ds->size(),
+	rc = L4Re::Env::env()->rm()->attach(addr, size,
 		L4Re::Rm::Search_addr, ds);
 	if (rc < 0) {
 		printf("Error attaching data space: %s\n", l4sys_errtostr(rc));
